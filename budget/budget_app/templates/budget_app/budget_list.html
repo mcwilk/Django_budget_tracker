@@ -3,9 +3,12 @@
 {% block content %}
 
     {% for b in budgets %}
-        {{ b.name }}
+        <a href="{% url 'dashboard' pk=b.pk %}">{{ b.name }}</a>
     {% empty %}
         You have not any budgets yet.    
     {% endfor %}
+
+    <a href="{% url 'logout' %}">(Logout)</a>
+    <a href="{% url 'new_budget' %}">Add budget</a>
 
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'budget_app/base.html' %}
+
+{% block content %}
+
+    {% for expense in expense_list %}
+        {{ expense.title }}</br>
+        {{ expense.date }}</br>
+        {{ expense.price }}</br>
+        {{ expense.get_category_display }}</br>
+    {% empty %}
+        You have not any expenses in this budget yet.    
+    {% endfor %}
+
+    <p>Expenses adding:</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Add expense</button>
+    </form>
+
+{% endblock %}

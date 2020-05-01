@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
-from .forms import BudgetForm, ExpenseForm
+from .forms import BudgetForm, ExpenseForm, SignupForm
 from .models import BudgetInfo, Expense
 
 
@@ -10,7 +10,26 @@ def index(request):
     return render(request, 'budget_app/index.html', {})
 
 
-def create_budget(request):
+def signup(request):
+
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    
+    else:
+        form = SignupForm()
+    
+    return render(request, 'registration/signup.html', {'form': form})
+
+
+def logged(request):
+    return redirect('budget_list', username=request.user)
+
+
+def new_budget(request):
 
     if request.method == 'POST':
         form = BudgetForm(request.POST)
@@ -24,7 +43,7 @@ def create_budget(request):
     else:
         form = BudgetForm()
     
-    return render(request, 'budget_app/create_budget.html', {'form': form})
+    return render(request, 'budget_app/new_budget.html', {'form': form})
 
 
 def budget_list(request, username):
@@ -32,19 +51,21 @@ def budget_list(request, username):
     return render(request, 'budget_app/budget_list.html', {'budgets': budgets})
 
 
-# def dashboard(request, username):
-#     #budget = get_object_or_404(BudgetInfo, id=)
-#     expense_list = budget.expenses.all().order_by('-date')[:5]
+def dashboard(request, pk):
+    budget = get_object_or_404(BudgetInfo, pk=pk)
+    expense_list = budget.expenses.all().order_by('-date')[:5]
 
-#     if request.method == 'POST':
-#         form = ExpenseForm(request.POST or None)
+    if request.method == 'POST':
+        form = ExpenseForm(request.POST)
 
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, ('Item added!'))
-#             return redirect('dashboard', username=request.user)
+        if form.is_valid():
+            expense = form.save(commit=False)
+            expense.budget = budget
+            expense.save()
+            #messages.success(request, ('Item added!'))
+            return redirect('dashboard', pk=budget.pk)
 
-#     else:
-#         form = ExpenseForm()
+    else:
+        form = ExpenseForm()
     
-#     return render(request, 'budget_app/dashboard.html', {'item_list': item_list, 'form': form})
+    return render(request, 'budget_app/dashboard.html', {'budget': budget, 'expense_list': expense_list, 'form': form})

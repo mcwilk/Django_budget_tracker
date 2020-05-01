@@ -16,7 +16,7 @@ class ExpenseForm(forms.ModelForm):
     class Meta:
         model = Expense
         fields = ['title', 'date', 'price', 'category']
-        widgets = {'date': forms.DateInput()}
+        #widgets = {'date': forms.DateInput()}
 
 
 class SignupForm(UserCreationForm):

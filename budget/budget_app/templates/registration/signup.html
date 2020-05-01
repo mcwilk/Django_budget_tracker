@@ -1,0 +1,12 @@
+{% extends 'budget_app/base.html' %}
+
+{% block content %}
+
+    <p>Registration form</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">REGISTER</button>
+    </form>
+{% endblock %}

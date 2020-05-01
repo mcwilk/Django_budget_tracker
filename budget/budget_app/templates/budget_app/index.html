@@ -1,5 +1,10 @@
 {% extends 'budget_app/base.html' %}
 
 {% block content %}
-    <a href="{% url 'budget_list' username=user.username %}">Budget list link</a>
+    <p>Welcome to "Budget tracker app"</p>
+    <p>To continue you have to login or register</p>
+    <a href="{% url 'signup' %}">Register</a>
+    <a href="{% url 'login' %}">Login</a>
 {% endblock %}
+
+<!-- <a href="{% url 'budget_list' username=user.username %}">Budget list link</a> -->
