@@ -1,0 +1,11 @@
+{% extends 'budget_app/base.html' %}
+
+{% block content %}
+
+    {% for b in budgets %}
+        {{ b.name }}
+    {% empty %}
+        You have not any budgets yet.    
+    {% endfor %}
+
+{% endblock %}

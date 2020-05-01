@@ -1,0 +1,5 @@
+{% extends 'budget_app/base.html' %}
+
+{% block content %}
+    <a href="{% url 'budget_list' username=user.username %}">Budget list link</a>
+{% endblock %}
