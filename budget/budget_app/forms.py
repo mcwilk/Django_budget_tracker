@@ -8,14 +8,14 @@ class BudgetForm(forms.ModelForm):
     
     class Meta:
         model = BudgetInfo
-        fields = ['name', 'budget']
+        fields = ['name', 'balance']
 
 
 class ExpenseForm(forms.ModelForm):
 
     class Meta:
         model = Expense
-        fields = ['title', 'date', 'price', 'category']
+        fields = ['title', 'date', 'price', 'category', 'transaction']
         #widgets = {'date': forms.DateInput()}
 
 

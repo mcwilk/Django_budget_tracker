@@ -4,11 +4,23 @@ from django.utils import timezone
 class BudgetInfo(models.Model):
     name = models.CharField(max_length=75)
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='owner')
-    budget = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+    balance = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
     created_on = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.name
+
+    def balance_left(self):
+        expense_list = Expense.objects.filter(budget=self)
+        total_expense_amount = 0
+        for expense in expense_list:
+            total_expense_amount += expense.price
+        return self.balance - total_expense_amount
+    
+    def total_transactions(self):
+        expense_list = Expense.objects.filter(budget=self)
+        return len(expense_list)
+
 
 class Expense(models.Model):
     CATEGORIES = (
@@ -29,11 +41,20 @@ class Expense(models.Model):
         (15, "Other"),
     )
 
+    PAYMENT = (
+        (1, "Cash"),
+        (2, "Card"),
+    )
+
     budget = models.ForeignKey('budget_app.BudgetInfo', on_delete=models.CASCADE, related_name='expenses')
     title = models.CharField(max_length=100)
     date = models.DateField(default=timezone.now)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
     category = models.SmallIntegerField(choices=CATEGORIES)
+    transaction = models.SmallIntegerField(choices=PAYMENT, default=2)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ('-date',)

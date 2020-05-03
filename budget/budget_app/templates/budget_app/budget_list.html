@@ -4,6 +4,7 @@
 
     {% for b in budgets %}
         <a href="{% url 'dashboard' pk=b.pk %}">{{ b.name }}</a>
+        {{ b.total_transactions }}
     {% empty %}
         You have not any budgets yet.    
     {% endfor %}

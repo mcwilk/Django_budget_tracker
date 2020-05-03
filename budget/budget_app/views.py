@@ -7,6 +7,8 @@ from .models import BudgetInfo, Expense
 
 
 def index(request):
+    if request.user.is_authenticated:
+        return redirect('budget_list', username=request.user)
     return render(request, 'budget_app/index.html', {})
 
 
@@ -47,13 +49,13 @@ def new_budget(request):
 
 
 def budget_list(request, username):
-    budgets = BudgetInfo.objects.filter(owner=request.user)
+    budgets = BudgetInfo.objects.filter(owner=request.user).order_by('-created_on')
     return render(request, 'budget_app/budget_list.html', {'budgets': budgets})
 
 
 def dashboard(request, pk):
     budget = get_object_or_404(BudgetInfo, pk=pk)
-    expense_list = budget.expenses.all().order_by('-date')[:5]
+    expense_list = budget.expenses.all()#[:3]
 
     if request.method == 'POST':
         form = ExpenseForm(request.POST)
@@ -61,8 +63,9 @@ def dashboard(request, pk):
         if form.is_valid():
             expense = form.save(commit=False)
             expense.budget = budget
+            expense.title = expense.title.capitalize()
             expense.save()
-            #messages.success(request, ('Item added!'))
+            messages.success(request, ("Product added successfully"))
             return redirect('dashboard', pk=budget.pk)
 
     else:
