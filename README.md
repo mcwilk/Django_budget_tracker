@@ -7,7 +7,9 @@
 * [Contact](#contact)
 
 ## General info
-Application for tracking and analysing your daily spendings. Functionalities:
+Application for tracking and analysing your daily spendings. 
+
+Main functionalities:
 - create private account
 - login for your private dashboard
 - create/delete as many budgets as yout want
