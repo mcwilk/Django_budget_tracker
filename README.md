@@ -7,7 +7,7 @@
 * [Contact](#contact)
 
 ## General info
-Application allows you:
+Application for tracking and analysing your daily spendings. Functionalities:
 - create private account
 - login for your private dashboard
 - create/delete as many budgets as yout want
@@ -35,15 +35,15 @@ Demo available on: soon
 
 Screenshot 1:
 
-![Screenshot1](./Screenshots/)
+![Screenshot1](./Screenshots/welcome.png)
 
 Screenshot 2:
 
-![Screenshot2](./Screenshots/)
+![Screenshot2](./Screenshots/list.png)
 
 Screenshot 3:
 
-![Screenshot3](./Screenshots/
+![Screenshot3](./Screenshots/dashboard.png)
 
 ## Status
 Project is: _in progress_
