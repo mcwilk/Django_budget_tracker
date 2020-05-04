@@ -35,15 +35,11 @@ Demo available on: soon
 
 Screenshot 1:
 
-![Screenshot1](./Screenshots/welcome.png)
+![Screenshot1](./Screenshots/list.png)
 
 Screenshot 2:
 
-![Screenshot2](./Screenshots/list.png)
-
-Screenshot 3:
-
-![Screenshot3](./Screenshots/dashboard.png)
+![Screenshot2](./Screenshots/dashboard.png)
 
 ## Status
 Project is: _in progress_
