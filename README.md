@@ -3,7 +3,6 @@
 * [Technologies](#technologies)
 * [Screenshots](#screenshots)
 * [Status](#status)
-* [Sources](#sources)
 * [Contact](#contact)
 
 ## General info
