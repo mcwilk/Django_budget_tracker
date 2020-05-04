@@ -1,0 +1,28 @@
+{% extends 'budget_app/base.html' %}
+
+{% block content %}
+
+    <header>
+
+        <div id="top">
+            <div class="top-left">
+                <a href="{% url 'budget_list' username=user %}">Budget-App</a>
+            </div>
+
+            <div class="top-user">
+                <i class="demo-icon icon-user"></i>
+                {{ user }}
+            </div>
+
+            <div class="top-right">
+                <a href="{% url 'logout' %}">LOGOUT</a>
+            </div>
+        </div>
+
+    </header>
+
+    {% block bottom %}
+    {% endblock %}
+
+{% endblock %}
+

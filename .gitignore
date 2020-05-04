@@ -2,3 +2,4 @@ myvenv
 .vscode/
 .budget/DS_Store
 .budget/db.sqlite3
+.gitignore.save

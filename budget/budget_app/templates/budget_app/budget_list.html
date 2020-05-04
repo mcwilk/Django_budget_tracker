@@ -1,15 +1,46 @@
-{% extends 'budget_app/base.html' %}
+{% extends 'budget_app/base_top_panel.html' %}
 
-{% block content %}
+{% block bottom %}
 
-    {% for b in budgets %}
-        <a href="{% url 'dashboard' pk=b.pk %}">{{ b.name }}</a>
-        {{ b.total_transactions }}
-    {% empty %}
-        You have not any budgets yet.    
-    {% endfor %}
+    <main>
 
-    <a href="{% url 'logout' %}">(Logout)</a>
-    <a href="{% url 'new_budget' %}">Add budget</a>
+        <article>
+
+            <section>
+
+                <div id="new-bdt">
+                    <a href="{% url 'new_budget' %}">
+                        <button class= "btn btn-default" type="submit">NEW</button>
+                    </a>
+                </div>
+
+            </section>
+
+            <section>
+
+                {% for b in budgets %}
+                    <a href="{% url 'expenses' pk=b.pk %}" style="text-decoration: none;">
+                        <div class="budget-list-item">
+                            {{ b.name }}
+                            {% if b.balance_left > 0 %}
+                                <span style="color: green">{{ b.balance_left }}</span>
+                            {% elif b.balance_left == 0 %}
+                                <span style="color: orange">{{ b.balance_left }}</span>
+                            {% else %}
+                                <span style="color: red">{{ b.balance_left }}</span>
+                            {% endif %}
+                        </div>
+                    </a>
+                {% empty %}
+                    <div class="budget-list-empty">
+                        Your budget list is empty.
+                    </div>    
+                {% endfor %}
+
+            </section>
+
+        </article>
+
+    </main>
 
 {% endblock %}

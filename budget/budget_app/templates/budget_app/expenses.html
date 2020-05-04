@@ -1,0 +1,118 @@
+{% extends 'budget_app/base_top_panel.html' %}
+
+{% block bottom %}
+
+<main>
+
+    <article>
+
+        <section>
+
+            <div id="overlap">
+
+                <div id=overlap-l-a>
+                    Expenses
+                </div>
+
+                <a href="{% url 'analysis' pk=budget.pk %}" style="text-decoration: none;">
+                    <div id=overlap-r-na>
+                        Analysis
+                    </div>
+                </a>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <div id="dashboard">
+
+                <header>
+
+                    <div id="h-info-l">
+                        NAME
+                    </div>
+                    <div id="h-info-r">
+                        BALANCE
+                    </div>
+                    <div style="clear: both;"></div>
+
+                    <div id="h-title">
+                        {{budget.name}}
+                    </div>
+                    <div id="h-balance">
+                        {% if budget.balance_left > 0 %}
+                            <span style="color: green">{{ budget.balance_left }}</span>
+                        {% elif budget.balance_left == 0 %}
+                            <span style="color: orange">{{ budget.balance_left }}</span>
+                        {% else %}
+                            <span style="color: red">{{ budget.balance_left }}</span>
+                        {% endif %}
+                    </div>
+                    <div style="clear: both;"></div>
+
+                </header>
+
+                <article>
+
+                    <div id="dashboard-btn-l">
+                        <a href="{% url 'new_item' pk=budget.pk %}">
+                            <button class= "btn btn-info" type="submit">ADD ITEM</button>
+                        </a>
+                    </div>
+                    <div id="dashboard-btn-r">
+                        <a href="{% url 'delete_budget' pk=budget.pk %}">
+                            <button class= "btn btn-danger" type="submit">DELETE BUDGET</button>
+                        </a>
+                    </div>
+                    <div style="clear: both;"></div>
+
+                </article>
+
+                <article>
+                    <div id="title-bar">
+                        <div class="col1">DATE</div>
+                        <div class="col2">TITLE</div>
+                        <div class="col3">CATEGORY</div>
+                        <div class="col4">PAYMENT</div>
+                        <div class="col5">PRICE</div>
+                        <div class="col6">DELETE</div>
+                        <div style="clear: both;"></div>
+                    </div>
+                    
+                    <div>
+                        {% if not expense_list %}
+                            <span style="padding: 18px 0px 0px 40px; font-size: 18px;">
+                                You have not expenses in this budget yet.
+                            </span>
+                        {% else %}   
+                            {% for expense in expense_list %}
+                                <div class="col1-item">{{ expense.date|date:'d.m.Y' }}</div>
+                                <div class="col2-item">{{ expense.title }}</div>
+                                <div class="col3-item">{{ expense.get_category_display}}</div>
+                                <div class="col4-item">{{ expense.get_transaction_display }}</div>
+                                <div class="col5-item">{{ expense.price }}</div>
+                                <div class="col6-item">
+                                    <a href="{% url 'delete_item' pk=expense.pk %}">X</a>
+                                </div>
+                                <div style="clear: both;"></div>
+                            {% endfor %}
+                            <div id="sum-bar">
+                                <div class="col1-sum">TOTAL</div>
+                                <div class="col2-sum">{{ budget.total }}</div>
+                            </div>  
+                        {% endif %}
+                    </div>
+
+                </article>
+                
+            </div>
+
+        </section>
+
+    </article>
+
+</main>
+
+{% endblock %}

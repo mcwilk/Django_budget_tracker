@@ -1,0 +1,79 @@
+{% extends 'budget_app/base_top_panel.html' %}
+
+{% block bottom %}
+
+    <main>
+
+        <article>
+
+            <header>
+
+                <div id="bdt-create-head">
+                    New item
+                </div>
+                
+            </header>
+
+            <section>
+
+                <form method="POST">
+                    {% csrf_token %}
+            
+                    <div class="forms">
+
+                        <div class="forms-l">
+                            <label for="title">Title: </label>
+                        </div>
+                        <div class="forms-r">
+                            <input type="text" name="title" id="title" placeholder="Item name">
+                        </div>
+
+                        <div class="forms-l">
+                            <label for="date">Date: </label>
+                        </div>
+                        <div class="forms-r">
+                            <input type="date" name="date" id="date">
+                        </div>
+
+                        <div class="forms-l">
+                            <label for="price">Price: </label>
+                        </div>
+                        <div class="forms-r">
+                            <input type="number" name="price" id="price" step=0.01>
+                        </div>
+
+                        <div class="forms-l">
+                            <label for="category">Category: </label>
+                        </div>
+                        <div class="forms-r">
+                            <select name="category" id="category">
+                                {% for value, category in form.fields.category.choices %}
+                                    <option value="{{ value }}">{{ category }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="forms-l">
+                            <label for="transaction">Transaction: </label>
+                        </div>
+                        <div class="forms-r">
+                            <select name="transaction" id="transaction">
+                                {% for value, tr in form.fields.transaction.choices %}
+                                    <option value="{{ value }}">{{ tr }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <button class="btn btn-success" type="submit">Add</button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </article>
+
+    </main>
+
+{% endblock %}

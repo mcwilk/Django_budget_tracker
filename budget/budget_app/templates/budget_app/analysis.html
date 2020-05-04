@@ -1,0 +1,40 @@
+{% extends 'budget_app/base_top_panel.html' %}
+
+{% block bottom %}
+
+<main>
+
+    <article>
+
+        <section>
+
+            <div id="overlap">
+                
+                <a href="{% url 'expenses' pk=budget.pk %}" style="text-decoration: none;">
+                    <div id=overlap-l-na>
+                        Expenses
+                    </div>
+                </a>
+
+                <div id=overlap-r-a>
+                    Analysis
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <div id="dashboard">
+
+                
+            </div>
+
+        </section>
+
+    </article>
+
+</main>
+
+{% endblock %}

@@ -19,7 +19,7 @@ def signup(request):
 
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('login')
     
     else:
         form = SignupForm()
@@ -39,6 +39,7 @@ def new_budget(request):
         if form.is_valid():
             budget = form.save(commit=False)
             budget.owner = request.user
+            budget.name = budget.name.upper()
             budget.save()
             return redirect('budget_list', username=request.user)
     
@@ -48,12 +49,25 @@ def new_budget(request):
     return render(request, 'budget_app/new_budget.html', {'form': form})
 
 
+def delete_budget(request, pk):
+    budget = get_object_or_404(BudgetInfo, pk=pk)
+    budget.delete()
+    return redirect('budget_list', username=request.user)
+
+
 def budget_list(request, username):
     budgets = BudgetInfo.objects.filter(owner=request.user).order_by('-created_on')
     return render(request, 'budget_app/budget_list.html', {'budgets': budgets})
 
 
-def dashboard(request, pk):
+def expenses(request, pk):
+    budget = get_object_or_404(BudgetInfo, pk=pk)
+    expense_list = budget.expenses.all()
+    num_of_expenses = len(expense_list)
+    return render(request, 'budget_app/expenses.html', {'budget': budget, 'expense_list': expense_list, 'num_of_expenses': num_of_expenses})
+
+
+def new_item(request, pk):
     budget = get_object_or_404(BudgetInfo, pk=pk)
     expense_list = budget.expenses.all()#[:3]
 
@@ -66,9 +80,20 @@ def dashboard(request, pk):
             expense.title = expense.title.capitalize()
             expense.save()
             messages.success(request, ("Product added successfully"))
-            return redirect('dashboard', pk=budget.pk)
+            return redirect('expenses', pk=budget.pk)
 
     else:
         form = ExpenseForm()
     
-    return render(request, 'budget_app/dashboard.html', {'budget': budget, 'expense_list': expense_list, 'form': form})
+    return render(request, 'budget_app/new_item.html', {'budget': budget, 'form': form})
+
+def delete_item(request, pk):
+    item = get_object_or_404(Expense, pk=pk)
+    item.delete()
+    return redirect('expenses', pk=item.budget.pk)
+
+
+def analysis(request, pk):
+    budget = get_object_or_404(BudgetInfo, pk=pk)
+    expense_list = budget.expenses.all()
+    return render(request, 'budget_app/analysis.html', {'budget': budget, 'expense_list': expense_list})

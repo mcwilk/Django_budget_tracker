@@ -2,11 +2,28 @@
 
 {% block content %}
 
-    <p>Registration form</p>
+    <header>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary" type="submit">REGISTER</button>
-    </form>
+        <div id="reg-head">
+            Registration form:
+        </div>
+        
+    </header>
+
+    <main>
+
+        <article>
+
+            <div class="reg-form">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-warning pull-right" type="submit">Register</button>
+                </form>
+            </div>
+
+        </article>
+
+    </main>
+
 {% endblock %}
