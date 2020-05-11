@@ -52,7 +52,7 @@ Screenshot 2:
 Project is: _finished_
 
 ## Sources
-www.highcharts.com
+Charts provided by: www.highcharts.com
 
 ## Contact
 maciej.wilk04@gmail.com
