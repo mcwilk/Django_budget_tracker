@@ -28,7 +28,166 @@
 
             <div id="dashboard">
 
-                
+                <header>
+
+                    </br>
+                    <div id="h-title">
+                        Expenses analysis
+                    </div>
+                    <div style="clear: both;"></div>
+
+                </header>
+
+                <article>
+
+                    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+                    {% if expense_list %}
+                        
+                        <div id="plot-1">                         
+                            <script>
+                                var cat_names = {{ cat_names|safe }};
+                                var cat_vals = {{ cat_vals|safe }};
+                            
+                                Highcharts.chart('plot-1', {
+                                    chart: {
+                                        type: 'column',
+                                        marginTop: 40,
+                                    },
+                                    title: {
+                                        text: 'Expenses per category',
+                                        style: {
+                                            fontSize: '20px',
+                                        },
+                                    },
+                                    subtitle: {
+                                        text: ''
+                                    },
+                                    xAxis: {
+                                        categories: cat_names,
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Expense'
+                                        }
+                                    },
+                                    series: [{
+                                        name: 'Expense',
+                                        data: cat_vals,
+                                        colorByPoint: true,
+                                        showInLegend: false,
+                                    }]
+                                });
+                            </script>
+                        </div>
+                        <div id="spacer"></div>
+                        <div id="plot-2">
+                            <script>                   
+                                var month_names = {{ month_names|safe }};
+                                var month_vals = {{ month_vals|safe }};
+
+                                Highcharts.chart('plot-2', {
+                                    chart: {
+                                        type: 'column',
+                                        marginTop: 40,
+                                        inverted: true,
+                                    },
+                                    title: {
+                                        text: 'Expenses per month',
+                                        style: {
+                                            fontSize: '18px',
+                                        },
+                                    },
+                                    subtitle: {
+                                        text: ''
+                                    },
+                                    xAxis: {
+                                        categories: month_names,
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Expense'
+                                        }
+                                    },
+                                    series: [{
+                                        name: 'Expense',
+                                        data: month_vals,
+                                        showInLegend: false,
+                                    }]
+                                });
+                            </script>
+                        </div>
+                        <div id="plot-3">
+                            <script>                   
+                                var trans_names = {{ trans_names|safe }};
+                                var trans_vals = {{ trans_vals|safe }};
+                                var trans_series = [];
+                                for (var i = 0; i < trans_names.length; i++) {
+                                    trans_series.push({name: trans_names[i], y: trans_vals[i]})
+                                };
+
+                                Highcharts.chart('plot-3', {
+                                    chart: {
+                                        type: 'pie',
+                                        marginTop: 40,
+                                    },
+                                    title: {
+                                        text: 'Expenses per transaction type',
+                                        style: {
+                                            fontSize: '18px',
+                                        },
+                                    },
+                                    tooltip: {
+                                        pointFormat: '{series.name}: <b>{point.y:.2f}</b>',
+                                    },
+                                    accessibility: {
+                                        point: {
+                                            valueSuffix: '%'
+                                        }
+                                    },
+                                    plotOptions: {
+                                        pie: {
+                                            dataLabels: {
+                                                enabled: true,
+                                                format: '{point.name}: {point.percentage:.2f} %'
+                                            }
+                                        }
+                                    },
+                                    subtitle: {
+                                        text: ''
+                                    },
+                                    xAxis: {
+                                        categories: trans_names,
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Expense'
+                                        }
+                                    },
+
+                                    series: [{
+                                        name: 'Expense',
+                                        data: trans_series,
+                                        showInLegend: false,
+                                    }]
+                                });
+                            </script>
+                        </div>
+                        <div style="clear: both;"></div>
+
+                    {% else %}
+
+                        <span style="margin-left: 25px; font-size: 18px;">
+                            You have not expenses in this budget yet.</br>
+                        </span>
+
+                    {% endif %}
+
+                </article>
+
             </div>
 
         </section>

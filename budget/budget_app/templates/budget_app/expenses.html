@@ -60,6 +60,9 @@
                         <a href="{% url 'new_item' pk=budget.pk %}">
                             <button class= "btn btn-info" type="submit">ADD ITEM</button>
                         </a>
+                        <a href="{% url 'edit_budget' pk=budget.pk %}" style="margin-left: 10px;">
+                            <button class= "btn btn-warning" type="submit">EDIT BUDGET</button>
+                        </a>
                     </div>
                     <div id="dashboard-btn-r">
                         <a href="{% url 'delete_budget' pk=budget.pk %}">

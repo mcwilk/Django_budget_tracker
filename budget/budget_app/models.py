@@ -13,6 +13,8 @@ class BudgetInfo(models.Model):
     def balance_left(self):
         expense_list = Expense.objects.filter(budget=self)
         total_expense = 0
+        budget_date = self.created_on
+
         for expense in expense_list:
             total_expense += expense.price
         return self.balance - total_expense
@@ -42,17 +44,23 @@ class Expense(models.Model):
         (13, "Cigarettes"),
         (14, "Taxes"),
         (15, "Accomodation"),
-        (16, "Other"),
+        (16, "Home"),
+        (17, "Electronics"),
+        (18, "Sport"),
+        (19, "Culture"),
+        (20, "Other"),
     )
 
     PAYMENT = (
         (1, "card"),
         (2, "cash"),
+        (3, "transfer"),
+        (4, "other"),
     )
 
     budget = models.ForeignKey('budget_app.BudgetInfo', on_delete=models.CASCADE, related_name='expenses')
     title = models.CharField(max_length=100)
-    date = models.DateField(default=timezone.now)
+    date = models.DateTimeField(default=timezone.now)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
     category = models.SmallIntegerField(choices=CATEGORIES)
     transaction = models.SmallIntegerField(choices=PAYMENT, default=1)

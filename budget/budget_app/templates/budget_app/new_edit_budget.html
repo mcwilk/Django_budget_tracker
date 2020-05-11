@@ -1,0 +1,70 @@
+{% extends 'budget_app/base_top_panel.html' %}
+
+{% block bottom %}
+
+    <main>
+
+        <article>
+
+            <header>
+
+                <div id="bdt-create-head">
+                    {% if budget %}
+                        Budget editor
+                    {% else %}
+                        Budget creator
+                    {% endif %}
+                </div>
+                
+            </header>
+
+            <section>
+
+                <form method="POST">
+                    {% csrf_token %}
+            
+                    <div class="forms">
+
+                        {% if budget %}
+                            <div class="forms-l">
+                                <label for="name">Budget name: </label>
+                            </div>
+                            <div class="forms-r">
+                                <input type="text" name="name" id="name" placeholder="{{ budget.name }}">
+                            </div>
+                            <div class="forms-l">
+                                <label for="balance">Add to balance: </label>
+                            </div>
+                            <div class="forms-r">
+                                <input type="number" name="balance" id="balance" step=0.01>
+                            </div>
+    
+                            <button class="btn btn-success" type="submit">Edit</button>
+                        {% else %}
+                            <div class="forms-l">
+                                <label for="name">Budget name: </label>
+                            </div>
+                            <div class="forms-r">
+                                <input type="text" name="name" id="name">
+                            </div>
+                            <div class="forms-l">
+                                <label for="balance">Budget balance: </label>
+                            </div>
+                            <div class="forms-r">
+                                <input type="number" name="balance" id="balance" step=0.01>
+                            </div>
+    
+                            <button class="btn btn-success" type="submit">Create</button>
+                        {% endif %}
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </article>
+
+    </main>
+
+{% endblock %}

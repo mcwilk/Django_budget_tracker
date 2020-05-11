@@ -222,7 +222,6 @@ body
     margin: 50px 15px 0px 15px;
     font-size: 20px;
     color: rgb(255, 0, 0);
-    /*border: 1px solid rgb(207, 207, 207);*/
 }
 
 #overlap-l-a
@@ -260,6 +259,7 @@ body
     padding-bottom: 40px;
     font-size: 15px;
     color: black;
+    min-height: 500px;
 }
 
 #dashboard-btn-l
@@ -431,6 +431,38 @@ body
     padding-top: 5px;
     color: black;
     font-weight: bold;
+}
+
+#plot-1
+{
+    width: 90%;
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+}
+
+#plot-2
+{
+    float: left;
+    width: 45%;
+    height: 350px;
+    margin-left: 35px;
+
+
+}
+
+#plot-3
+{
+    float: right;
+    width: 45%;
+    height: 350px;
+    margin-right: 35px;
+}
+
+#spacer
+{
+    height: 40px;
 }
 
 #info
