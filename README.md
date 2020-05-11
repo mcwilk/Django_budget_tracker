@@ -44,7 +44,7 @@ Screenshot 2:
 
 ![Screenshot2](./Screenshots/dashboard.png)
 
-Screenshot 2:
+Screenshot 3:
 
 ![Screenshot3](./Screenshots/analysis.png)
 
