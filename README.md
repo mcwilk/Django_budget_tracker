@@ -46,7 +46,7 @@ Screenshot 2:
 
 Screenshot 3:
 
-![Screenshot3](./Screenshots/analysis.png)
+![Screenshot3](./Screenshots/analysis_v2.png)
 
 ## Status
 Project is: _finished_
