@@ -67,9 +67,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'budget_db',   # nazwa BD: budget_db
         'USER': os.environ.get('DB_USER', ''),
-        'PASSWORD': 'qwertyui',
-        'HOST': 'localhost',    #correct IP/host where your production database is located
-        'PORT': '5432'
     }
 }
 
