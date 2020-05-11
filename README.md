@@ -3,6 +3,7 @@
 * [Technologies](#technologies)
 * [Screenshots](#screenshots)
 * [Status](#status)
+* [Sources](#sources)
 * [Contact](#contact)
 
 ## General info
@@ -15,11 +16,11 @@ Main functionalities:
 - add/remove items from your budgets
 - specify category for each item
 - track spendings and balance
-- get spendings analysis (under construction)
+- get spendings analysis
 
 Backend: Python/Django 
 
-Frontend: HTML5, CSS3
+Frontend: HTML5, CSS3, Highcharts
 
 Database: PostgreSQL
 
@@ -30,6 +31,7 @@ Demo available on: soon
 * Django 2.x
 * HTML5
 * CSS3
+* Highcharts
 * PostgreSQL
 
 ## Screenshots
@@ -42,8 +44,15 @@ Screenshot 2:
 
 ![Screenshot2](./Screenshots/dashboard.png)
 
+Screenshot 2:
+
+![Screenshot3](./Screenshots/analysis.png)
+
 ## Status
-Project is: _in progress_
+Project is: _finished_
+
+## Sources
+www.highcharts.com
 
 ## Contact
 maciej.wilk04@gmail.com
