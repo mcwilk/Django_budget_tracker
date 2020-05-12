@@ -43,18 +43,40 @@ body
 .login
 {
     font-size: 15px;
-    padding-top: 150px;
+    margin-top: 150px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
 }
 
-.login-row
+.login-l
 {
-    margin-top: 8px;
+    float: left;
+    text-align: initial;
+    width: 150px;
+    padding: 15px 0px 0px 30px;
 }
 
-.login input
+.login-l label
 {
-    margin-left: 10px;
+    margin-bottom: 17px;
+}
+
+.login-r
+{
+    float: left;
+    text-align: initial;
+    width: 250px;
+    margin-bottom: 5px;
+    padding: 11px 0px 0px 0px;
+}
+
+.login-r input, .login-r textarea
+{
+    margin-bottom: 8px;
+    width: 200px;
+    height: 30px;
 }
 
 .login button
@@ -198,7 +220,12 @@ body
     float: left;
     text-align: initial;
     width: 150px;
-    padding: 7px 0px 0px 30px;
+    padding: 15px 0px 0px 20px;
+}
+
+.forms-l label
+{
+    margin-bottom: 17px;
 }
 
 .forms-r
@@ -207,6 +234,21 @@ body
     text-align: initial;
     width: 250px;
     margin-bottom: 5px;
+    padding: 10px 0px 0px 0px;
+}
+
+.forms-r input, .forms-r textarea
+{
+    margin-bottom: 8px;
+    width: 200px;
+    height: 30px;
+}
+
+.forms-r select
+{
+    margin-bottom: 8px;
+    width: 200px;
+    height: 30px;
 }
 
 .forms button
@@ -215,11 +257,20 @@ body
     margin-top: 20px;
 }
 
+#container-2
+{
+    background-color: white;
+    min-height: 500px;
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #overlap
 {
     background-color: rgb(226, 0, 0);
     height: 50px;
-    margin: 50px 15px 0px 15px;
+    margin: 50px 0px 0px 0px;
     font-size: 20px;
     color: rgb(255, 0, 0);
 }
@@ -227,8 +278,8 @@ body
 #overlap-l-a
 {
     float: left;
-    padding: 9px 16px 12px 16px;
-    background-color: white;
+    padding: 9px 16px 13px 16px;
+    background-color: rgb(255, 255, 255);
 }
 
 #overlap-l-na
@@ -241,8 +292,8 @@ body
 #overlap-r-a
 {
     float: left;
-    padding: 9px 16px 12px 16px;
-    background-color: white;
+    padding: 9px 16px 13px 16px;
+    background-color: rgb(255, 255, 255);
 }
 
 #overlap-r-na
@@ -254,12 +305,11 @@ body
 
 #dashboard
 {
-    background-color: white;
-    margin: 0px 15px 30px 15px;
+    background-color: rgb(255, 255, 255);
+    margin: 1px 15px 30px 15px;
     padding-bottom: 40px;
     font-size: 15px;
     color: black;
-    min-height: 500px;
 }
 
 #dashboard-btn-l
@@ -279,6 +329,7 @@ body
     float:left;
     padding: 20px 0px 0px 25px;
     font-size: 12px;
+    background-color: rgb(255, 255, 255);
 }
 
 #h-info-r
@@ -286,6 +337,7 @@ body
     float: right;
     padding: 20px 25px 0px 0px;
     font-size: 12px;
+    background-color: rgb(255, 255, 255);
 }
 
 #h-title
@@ -326,21 +378,21 @@ body
 {
     float: left;
     padding-bottom: 2px;
-    width: 380px;
+    width: 340px;
 }
 
 .col3
 {
     float: left;
     padding-bottom: 2px;
-    width: 160px;
+    width: 135px;
 }
 
 .col4
 {
     float: left;
     padding-bottom: 2px;
-    width: 100px;
+    width: 120px;
 }
 
 .col5
@@ -370,21 +422,21 @@ body
 {
     float: left;
     padding-bottom: 5px;
-    width: 380px;
+    width: 340px;
 }
 
 .col3-item
 {
     float: left;
     padding-bottom: 5px;
-    width: 160px;
+    width: 135px;
 }
 
 .col4-item
 {
     float: left;
     padding-bottom: 5px;
-    width: 100px;
+    width: 120px;
 }
 
 .col5-item
@@ -419,7 +471,7 @@ body
 {
     float:left;
     text-align: right;
-    width: 715px;
+    width: 650px;
     padding-top: 5px;
     color: black;
 }
@@ -427,7 +479,7 @@ body
 .col2-sum
 {
     float:left;
-    margin-left: 55px;
+    margin-left: 75px;
     padding-top: 5px;
     color: black;
     font-weight: bold;
