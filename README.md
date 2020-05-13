@@ -24,7 +24,10 @@ Frontend: HTML5, CSS3, Highcharts
 
 Database: PostgreSQL
 
-Demo available on: soon
+Demo available on: https://mcwilk-budget-app.herokuapp.com/
+To check all available functions you can login as:
+- Username: user
+- Password: iuytrewq
 
 ## Technologies
 * Python 3.x
