@@ -1,5 +1,4 @@
-myvenv
-.vscode/
-.budget/DS_Store
-.budget/db.sqlite3
-.gitignore.save
+__pycache__
+.idea
+venv
+.env*
