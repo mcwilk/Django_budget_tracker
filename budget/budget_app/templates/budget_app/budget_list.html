@@ -18,16 +18,16 @@
 
             <section>
 
-                {% for b in budgets %}
-                    <a href="{% url 'expenses' pk=b.pk %}" style="text-decoration: none;">
+                {% for budget in budgets %}
+                    <a href="{% url 'expenses' pk=budget.pk %}" style="text-decoration: none;">
                         <div class="budget-list-item">
-                            {{ b.name }}
-                            {% if b.balance_left > 0 %}
-                                <span style="color: green">{{ b.balance_left }}</span>
-                            {% elif b.balance_left == 0 %}
-                                <span style="color: orange">{{ b.balance_left }}</span>
+                            {{ budget.name }}
+                            {% if budget.get_balance_left > 0 %}
+                                <span style="color: green">{{ budget.get_balance_left }}</span>
+                            {% elif budget.get_balance_left == 0 %}
+                                <span style="color: orange">{{ budget.get_balance_left }}</span>
                             {% else %}
-                                <span style="color: red">{{ b.balance_left }}</span>
+                                <span style="color: red">{{ budget.get_balance_left }}</span>
                             {% endif %}
                         </div>
                     </a>

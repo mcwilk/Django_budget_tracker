@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+
 class BudgetInfo(models.Model):
     name = models.CharField(max_length=75)
     owner = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='owner')
@@ -8,26 +9,24 @@ class BudgetInfo(models.Model):
     created_on = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.name
+        return f"Budget: {self.name} (owner: {self.owner}, date: {self.created_on})"
 
-    def balance_left(self):
-        expense_list = Expense.objects.filter(budget=self)
-        total_expense = 0
-        budget_date = self.created_on
+    def get_total_expenses(self):
+        expense_list = Expenses.objects.filter(budget=self)
+        total_expenses = 0
 
         for expense in expense_list:
-            total_expense += expense.price
+            total_expenses += expense.price
+
+        return total_expenses
+
+    def get_balance_left(self):
+        total_expense = self.get_total_expenses()
+
         return self.balance - total_expense
-    
-    def total(self):
-        expense_list = Expense.objects.filter(budget=self)
-        total_expense = 0
-        for expense in expense_list:
-            total_expense += expense.price
-        return total_expense
 
 
-class Expense(models.Model):
+class Expenses(models.Model):
     CATEGORIES = (
         (1, "Groceries"),
         (2, "Cleaning products"),
@@ -51,7 +50,7 @@ class Expense(models.Model):
         (20, "Other"),
     )
 
-    PAYMENT = (
+    PAYMENTS = (
         (1, "card"),
         (2, "cash"),
         (3, "transfer"),
@@ -63,7 +62,7 @@ class Expense(models.Model):
     date = models.DateTimeField(default=timezone.now)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0.00)
     category = models.SmallIntegerField(choices=CATEGORIES)
-    transaction = models.SmallIntegerField(choices=PAYMENT, default=1)
+    transaction = models.SmallIntegerField(choices=PAYMENTS, default=1)
 
     def __str__(self):
         return self.title

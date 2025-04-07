@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from .forms import BudgetForm, ExpenseForm, SignupForm
-from .models import BudgetInfo, Expense
+from .models import BudgetInfo, Expenses
 
 
 def index(request):
@@ -117,7 +117,7 @@ def new_item(request, pk):
 
 @login_required
 def delete_item(request, pk):
-    item = get_object_or_404(Expense, pk=pk)
+    item = get_object_or_404(Expenses, pk=pk)
     item.delete()
     return redirect('expenses', pk=item.budget.pk)
 
@@ -157,12 +157,12 @@ def analysis(request, pk):
     trans_vals = list(trans_amount.values())
 
     context = {'budget': budget, 
-                'expense_list': expense_list, 
-                'cat_names': cat_names, 
-                'cat_vals': cat_vals, 
-                'month_names': month_names, 
-                'month_vals': month_vals,
-                'trans_names': trans_names, 
-                'trans_vals': trans_vals,}
+               'expense_list': expense_list,
+               'cat_names': cat_names,
+               'cat_vals': cat_vals,
+               'month_names': month_names,
+               'month_vals': month_vals,
+               'trans_names': trans_names,
+               'trans_vals': trans_vals,}
 
     return render(request, 'budget_app/analysis.html', context)

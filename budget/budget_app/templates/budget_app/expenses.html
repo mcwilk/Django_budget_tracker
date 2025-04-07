@@ -44,12 +44,12 @@
                         {{budget.name}}
                     </div>
                     <div id="h-balance">
-                        {% if budget.balance_left > 0 %}
-                            <span style="color: green">{{ budget.balance_left }}</span>
-                        {% elif budget.balance_left == 0 %}
-                            <span style="color: orange">{{ budget.balance_left }}</span>
+                        {% if budget.get_balance_left > 0 %}
+                            <span style="color: green">{{ budget.get_balance_left }}</span>
+                        {% elif budget.get_balance_left == 0 %}
+                            <span style="color: orange">{{ budget.get_balance_left }}</span>
                         {% else %}
-                            <span style="color: red">{{ budget.balance_left }}</span>
+                            <span style="color: red">{{ budget.get_balance_left }}</span>
                         {% endif %}
                     </div>
                     <div style="clear: both;"></div>
@@ -105,7 +105,7 @@
                             {% endfor %}
                             <div id="sum-bar">
                                 <div class="col1-sum">TOTAL</div>
-                                <div class="col2-sum">{{ budget.total }}</div>
+                                <div class="col2-sum">{{ budget.get_total_expenses }}</div>
                             </div>  
                         {% endif %}
                     </div>

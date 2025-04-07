@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import BudgetInfo, Expense
+from .models import BudgetInfo, Expenses
 
 
 class BudgetForm(forms.ModelForm):
@@ -14,7 +14,7 @@ class BudgetForm(forms.ModelForm):
 class ExpenseForm(forms.ModelForm):
 
     class Meta:
-        model = Expense
+        model = Expenses
         fields = ['title', 'date', 'price', 'category', 'transaction']
         #widgets = {'date': forms.DateInput()}
 
