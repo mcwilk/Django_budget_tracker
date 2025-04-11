@@ -1,4 +1,6 @@
+.env*
+
 __pycache__
 .idea
+budget/budget_app/migrations
 venv
-.env*

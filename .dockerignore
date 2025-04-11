@@ -1,0 +1,13 @@
+.dockerignore
+#.env*
+.gitignore
+.log
+.pyc
+docker-compose.yaml
+Dockerfile
+README.md
+
+.git
+budget/budget_app/migrations
+Screenshots
+venv
