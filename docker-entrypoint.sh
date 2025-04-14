@@ -13,5 +13,16 @@
 #export HOME=/home/$USER_NAME
 #export USER=$USER_NAME
 #exec su - "$USER_NAME"
+pwd
+ls
+python budget/manage.py makemigrations
+python budget/manage.py migrate
 
-exec bash
+#if [[ "$DJANGO_ENV" == "dev" || "$DJANGO_ENV" == "test" ]]; then
+#  echo "Creating django superuser..."
+#  python budget/scripts/create_superuser.py
+#fi
+
+python budget/manage.py runserver
+
+#exec bash

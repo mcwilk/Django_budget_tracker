@@ -18,13 +18,14 @@ WORKDIR /budget_tracker
 
 # Set environment
 COPY requirements.txt .
-RUN apt-get update && apt-get install -y bash nano passwd &&  \
+RUN apt-get update &&  \
+    apt-get install -y bash nano passwd &&  \
+    groupadd "$USER_NAME" &&  \
+    useradd -g "$USER_NAME" -p "$USER_PASSWD" "$USER_NAME" && \
     pip install --no-cache-dir -r requirements.txt
 
 #RUN useradd -m -s /bin/bash "$USER_NAME" && echo "$USER_NAME:$USER_PASSWD" | chpasswd && \
 #    adduser "$USER_NAME" sudo && chown -R $USER_NAME:$USER_NAME /app
-
-RUN groupadd "$USER_NAME" && useradd -g "$USER_NAME" -p "$USER_PASSWD" "$USER_NAME"
 
 COPY . .
 #COPY docker-entrypoint.sh .
