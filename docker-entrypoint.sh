@@ -1,20 +1,15 @@
 #!/bin/bash
-#USER_NAME="django_user"
-#USER_PASSWD="django_user_passwd123"
 
-# Create user and add to sudo
-#if [ -n "$USER_NAME" ] && [ -n "$USER_PASSWD" ]; then
-#  useradd -m -s /bin/bash "$USER_NAME"
-#  echo "$USER_NAME:$USER_PASSWD" | chpasswd
-#  adduser "$USER_NAME" sudo
-#fi
+set -e
 
-# Przełączenie na tego użytkownika
-#export HOME=/home/$USER_NAME
-#export USER=$USER_NAME
-#exec su - "$USER_NAME"
-pwd
-ls
+echo "Waiting for Postgres..."
+
+until nc -z "$POSTGRES_HOST" "$POSTGRES_PORT"; do
+    sleep 1
+done
+
+echo "Postgres is up!"
+
 python budget/manage.py makemigrations
 python budget/manage.py migrate
 
@@ -23,6 +18,4 @@ python budget/manage.py migrate
 #  python budget/scripts/create_superuser.py
 #fi
 
-python budget/manage.py runserver
-
-#exec bash
+python budget/manage.py runserver 0.0.0.0:8000
