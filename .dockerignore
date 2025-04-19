@@ -1,0 +1,13 @@
+.dockerignore
+.env_docker
+#.env*
+.gitignore
+.log
+.pyc
+docker-compose.yaml
+Dockerfile
+README.md
+
+.git
+Screenshots
+venv
