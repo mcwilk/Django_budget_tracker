@@ -30,6 +30,7 @@ services:
 volumes:
   postgres_volume:
     driver: local
+    name: postgres_data
 
 networks:
   tracker_network:
