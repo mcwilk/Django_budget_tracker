@@ -4,7 +4,7 @@ import django
 from django.contrib.auth import get_user_model
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'budget.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'budget_project.settings')
 django.setup()
 
 user = get_user_model()

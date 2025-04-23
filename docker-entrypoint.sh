@@ -15,7 +15,7 @@ python budget/manage.py migrate
 
 #if [[ "$DJANGO_ENV" == "dev" || "$DJANGO_ENV" == "test" ]]; then
 #  echo "Creating django superuser..."
-#  python budget/scripts/create_superuser.py
+#  python budget_project/scripts/create_superuser.py
 #fi
 
 python budget/manage.py runserver 0.0.0.0:8000
