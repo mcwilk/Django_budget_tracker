@@ -156,7 +156,7 @@ def analysis(request, pk):
     trans_names = list(trans_amount.keys())
     trans_vals = list(trans_amount.values())
 
-    context = {'budget': budget, 
+    context = {'budget': budget,
                'expense_list': expense_list,
                'cat_names': cat_names,
                'cat_vals': cat_vals,
