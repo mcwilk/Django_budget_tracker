@@ -69,7 +69,7 @@ def edit_budget(request, pk):
     else:
         form = BudgetForm(instance=budget)
     
-    return render(request, 'budget_app/new_edit_budget.html', {'form': form, 'budget_project': budget})
+    return render(request, 'budget_app/new_edit_budget.html', {'form': form, 'budget': budget})
 
 
 @login_required
@@ -90,7 +90,7 @@ def expenses(request, pk):
     budget = get_object_or_404(BudgetInfo, pk=pk)
     expense_list = budget.expenses.all()
     num_of_expenses = len(expense_list)
-    return render(request, 'budget_app/expenses.html', {'budget_project': budget, 'expense_list': expense_list, 'num_of_expenses': num_of_expenses})
+    return render(request, 'budget_app/expenses.html', {'budget': budget, 'expense_list': expense_list, 'num_of_expenses': num_of_expenses})
 
 
 @login_required
@@ -112,7 +112,7 @@ def new_item(request, pk):
     else:
         form = ExpenseForm()
     
-    return render(request, 'budget_app/new_item.html', {'budget_project': budget, 'form': form, 'today': today})
+    return render(request, 'budget_app/new_item.html', {'budget': budget, 'form': form, 'today': today})
 
 
 @login_required
@@ -156,7 +156,7 @@ def analysis(request, pk):
     trans_names = list(trans_amount.keys())
     trans_vals = list(trans_amount.values())
 
-    context = {'budget_project': budget,
+    context = {'budget': budget,
                'expense_list': expense_list,
                'cat_names': cat_names,
                'cat_vals': cat_vals,
