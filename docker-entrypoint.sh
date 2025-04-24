@@ -13,9 +13,9 @@ echo "Postgres is up!"
 python budget/manage.py makemigrations
 python budget/manage.py migrate
 
-#if [[ "$DJANGO_ENV" == "dev" || "$DJANGO_ENV" == "test" ]]; then
-#  echo "Creating django superuser..."
-#  python budget_project/scripts/create_superuser.py
-#fi
+if [[ "$DJANGO_ENV" == "dev" || "$DJANGO_ENV" == "test" ]]; then
+  echo "Creating django users..."
+  python budget/scripts/create_users.py
+fi
 
 python budget/manage.py runserver 0.0.0.0:8000
