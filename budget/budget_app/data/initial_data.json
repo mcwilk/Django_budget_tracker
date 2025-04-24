@@ -1,0 +1,82 @@
+[
+  {
+    "model": "budget_app.BudgetInfo",
+    "pk": 1,
+    "fields": {
+      "name": "Holidays",
+      "owner": 2,
+      "balance": 3100,
+      "created_on": "2025-04-11"
+    }
+  },
+  {
+    "model": "budget_app.BudgetInfo",
+    "pk": 2,
+    "fields": {
+      "name": "Home budget",
+      "owner": 2,
+      "balance": 2300,
+      "created_on": "2025-04-01"
+    }
+  },
+  {
+    "model": "budget_app.Expenses",
+    "pk": 1,
+    "fields": {
+      "budget": 2,
+      "title": "Cheese",
+      "date": "2025-04-01",
+      "price": 7.99,
+      "category": 1,
+      "transaction": 2
+    }
+  },
+  {
+    "model": "budget_app.Expenses",
+    "pk": 2,
+    "fields": {
+      "budget": 2,
+      "title": "Bread",
+      "date": "2025-04-01",
+      "price": 4.95,
+      "category": 1,
+      "transaction": 1
+    }
+  },
+  {
+    "model": "budget_app.Expenses",
+    "pk": 3,
+    "fields": {
+      "budget": 2,
+      "title": "Shampoo",
+      "date": "2025-04-02",
+      "price": 12.99,
+      "category": 3,
+      "transaction": 2
+    }
+  },
+  {
+    "model": "budget_app.Expenses",
+    "pk": 4,
+    "fields": {
+      "budget": 1,
+      "title": "Tickets",
+      "date": "2025-04-12",
+      "price": 990,
+      "category": 7,
+      "transaction": 3
+    }
+  },
+  {
+    "model": "budget_app.Expenses",
+    "pk": 5,
+    "fields": {
+      "budget": 1,
+      "title": "Hotel",
+      "date": "2025-04-15",
+      "price": 655,
+      "category": 15,
+      "transaction": 2
+    }
+  }
+]

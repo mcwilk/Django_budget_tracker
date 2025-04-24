@@ -28,6 +28,7 @@ def create_django_user(username: str, email: str, password: str, is_superuser: b
             print("Superuser has been created!")
         else:
             user.objects.create_user(username, email, password)
+            # user.objects.create(id=2, username=generic_user, email=generic_email, password=generic_passwd)
             print("Generic user has been created!")
 
         created_users += 1
