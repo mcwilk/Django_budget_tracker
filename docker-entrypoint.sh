@@ -1,7 +1,10 @@
 #!/bin/bash
 
-set -e
+set -eu
+# Optional: debugging
+# set -x
 
+echo "Running entrypoint script..."
 echo "Waiting for Postgres..."
 
 until nc -z "$POSTGRES_HOST" "$POSTGRES_PORT"; do
