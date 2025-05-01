@@ -2,6 +2,6 @@
 
 __pycache__
 .idea
-budget/budget_app/migrations/*
-!budget/budget_app/migrations/__init__.py
+budget_app/migrations/*
+!budget_app/migrations/__init__.py
 venv

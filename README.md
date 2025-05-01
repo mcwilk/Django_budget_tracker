@@ -41,15 +41,15 @@ To check how it works you can create a new account via register panel or login a
 
 Screenshot 1:
 
-![Screenshot1](./Screenshots/list.png)
+![Screenshot1](other/screenshots/list.png)
 
 Screenshot 2:
 
-![Screenshot2](./Screenshots/dashboard.png)
+![Screenshot2](other/screenshots/dashboard.png)
 
 Screenshot 3:
 
-![Screenshot3](./Screenshots/analysis_v1.png)
+![Screenshot3](other/screenshots/analysis_v1.png)
 
 ## Status
 Project is: _finished_

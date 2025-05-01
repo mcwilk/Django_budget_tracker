@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 
 ENV = os.environ.get("DJANGO_ENV", "dev")
-dotenv_path = os.path.join(Path(__file__).parent.parent.parent, f".env_{ENV}")
+dotenv_path = os.path.join(Path(__file__).parent.parent, f".env_{ENV}")
 load_dotenv(dotenv_path)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'budget_project.urls'
+ROOT_URLCONF = 'budget_config.urls'
 
 TEMPLATES = [
     {
@@ -59,7 +59,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'budget_project.wsgi.application'
+WSGI_APPLICATION = 'budget_config.wsgi.application'
 
 DATABASES = {
     'default': {
