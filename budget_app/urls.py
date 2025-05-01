@@ -1,5 +1,7 @@
 from django.urls import path
-from . import views
+
+from budget_app import views
+
 
 urlpatterns = [
     path('', views.index, name='home'),
