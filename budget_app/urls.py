@@ -1,6 +1,6 @@
 from django.urls import path
 
-import views
+from budget_app import views
 
 
 urlpatterns = [

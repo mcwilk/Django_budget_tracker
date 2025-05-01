@@ -2,8 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
-from forms import BudgetForm, ExpenseForm, SignupForm
-from models import BudgetInfo, Expenses
+from budget_app.forms import BudgetForm, ExpenseForm, SignupForm
+from budget_app.models import BudgetInfo, Expenses
 
 
 def index(request):
