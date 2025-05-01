@@ -41,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'budget_project.urls'
+ROOT_URLCONF = 'budget_config.urls'
 
 TEMPLATES = [
     {
@@ -59,7 +59,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'budget_project.wsgi.application'
+WSGI_APPLICATION = 'budget_config.wsgi.application'
 
 DATABASES = {
     'default': {

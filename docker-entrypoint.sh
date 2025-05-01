@@ -18,7 +18,7 @@ python budget/manage.py migrate
 
 if [[ "$DJANGO_ENV" == "dev" || "$DJANGO_ENV" == "test" ]]; then
   echo "Creating django users..."
-  python budget/scripts/create_users.py
+  python budget/budget_scripts/create_users.py
 
   echo "Loading demo data..."
   python budget/manage.py loaddata budget/budget_app/data/initial_data.json

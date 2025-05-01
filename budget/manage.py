@@ -6,7 +6,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'budget_project.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'budget_config.settings')
 
     try:
         from django.core.management import execute_from_command_line
