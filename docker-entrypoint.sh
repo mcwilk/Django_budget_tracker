@@ -13,15 +13,15 @@ done
 
 echo "Postgres is up!"
 
-python budget/manage.py makemigrations
-python budget/manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 
 if [[ "$DJANGO_ENV" == "dev" || "$DJANGO_ENV" == "test" ]]; then
   echo "Creating django users..."
-  python budget/budget_scripts/create_users.py
+  python budget_scripts/create_users.py
 
   echo "Loading demo data..."
-  python budget/manage.py loaddata budget/budget_app/data/initial_data.json
+  python manage.py loaddata budget_app/data/initial_data.json
 fi
 
-python budget/manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8000
