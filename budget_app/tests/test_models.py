@@ -9,7 +9,7 @@ from budget_app.models import BudgetInfo, Expenses
 
 
 @pytest.mark.django_db
-class TestBudgetInfo:
+class TestModels:
 
     def test_budget_info_creation(self, test_user):
         logging.info(f"Running 'test_budget_info_creation'...")
