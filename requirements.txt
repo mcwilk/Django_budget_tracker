@@ -1,7 +1,10 @@
+assertpy==1.1
 asgiref==3.8.1
 Django==4.2
 psycopg2-binary==2.9.10
 pylint==3.3.6
+pytest==8.3.5
+pytest-django==4.11.1
 python-dotenv==1.1.0
 sqlparse==0.5.3
 typing_extensions==4.13.0
