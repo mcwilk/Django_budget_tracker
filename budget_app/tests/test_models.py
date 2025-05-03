@@ -17,16 +17,21 @@ class TestModels:
         budget = BudgetInfo.objects.create(name="budget1", owner=user, balance=2000, created_on="2025-02-10")
 
         with soft_assertions():
-            assert_that(BudgetInfo.objects.count()).is_equal_to(1)
-            assert_that(budget).is_not_none()
+            assert_that(hasattr(budget, 'name')).is_true()
+            assert_that(hasattr(budget, 'owner')).is_true()
+            assert_that(hasattr(budget, 'balance')).is_true()
+            assert_that(hasattr(budget, 'created_on')).is_true()
+            assert_that(hasattr(budget, 'get_total_expenses')).is_true()
+            assert_that(hasattr(budget, 'get_balance_left')).is_true()
             assert_that(str(budget)).is_equal_to(f"Budget: budget1 (owner: {user.username}, date: 2025-02-10)")
+
+        with soft_assertions():
+            assert_that(BudgetInfo.objects.count()).is_equal_to(1)
             assert_that(budget.name).is_equal_to("budget1")
             assert_that(budget.owner_id).is_equal_to(1)
             assert_that(budget.balance).is_equal_to(2000)
             assert_that(str(budget.created_on)).contains("2025-02-10")
 
-    # TODO fix this test: check ordering and timestamps (time zones?)
-    @pytest.mark.xfail
     def test_expense_creation(self, test_budget):
         logging.info(f"Running 'test_expense_creation'...")
         budget = test_budget
@@ -39,19 +44,29 @@ class TestModels:
                                 transaction=2)
 
         all_expenses = Expenses.objects.all()
-        logging.info(f"All expenses: {all_expenses}")
         titles = [expense.title for expense in all_expenses]
+
+        with soft_assertions():
+            for expense in all_expenses:
+                assert_that(hasattr(expense, 'budget')).is_true()
+                assert_that(hasattr(expense, 'title')).is_true()
+                assert_that(hasattr(expense, 'date')).is_true()
+                assert_that(hasattr(expense, 'price')).is_true()
+                assert_that(hasattr(expense, 'category')).is_true()
+                assert_that(hasattr(expense, 'transaction')).is_true()
+                assert_that(len(expense.CATEGORIES)).is_equal_to(20)
+                assert_that(len(expense.PAYMENTS)).is_equal_to(4)
+                assert_that(str(expense)).is_equal_to(expense.title)
 
         with soft_assertions():
             assert_that(Expenses.objects.count()).is_equal_to(2)
             assert_that(titles).is_equal_to(["expense2", "expense1"])
 
-            for idx, expense in enumerate(all_expenses, start=1):
-                assert_that(str(expense)).is_equal_to(expense.title)
-                assert_that(expense.budget_id).is_equal_to(1)
+            for idx, expense in zip(range(len(all_expenses), 0, -1), all_expenses):
+                assert_that(expense.budget_id).is_equal_to(budget.id)
                 assert_that(expense.title).is_equal_to(f"expense{idx}")
-                assert_that(expense.date).is_equal_to(timezone.now().date()) if idx == 1 else \
-                    assert_that(str(expense.date)).starts_with(str(today_plus_1))
+                assert_that(str(expense.date)).starts_with(str(today.date())) if idx == 1 else \
+                    assert_that(str(expense.date)).starts_with(str(today_plus_1.date()))
                 assert_that(expense.price).is_equal_to(100)
                 assert_that(expense.category).is_equal_to(idx)
                 assert_that(expense.transaction).is_equal_to(idx)
