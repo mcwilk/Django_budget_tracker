@@ -28,7 +28,7 @@
                         {% if budget %}
                             <div class="forms-l">
                                 <div><label for="name">Budget name: </label></div>
-                                <div><label for="balance">Add to balance: </label></div>
+                                <div><label for="balance">Budget balance: </label></div>
                             </div>
                             <div class="forms-r">
                                 <div><input type="text" name="name" id="name" value="{{ budget.name }}"></div>
@@ -40,13 +40,27 @@
                         {% else %}
                             <div class="forms-l">
                                 <div><label for="name">Budget name: </label></div>
-                                <div><label for="balance">Add to balance: </label></div>
+                                <div><label for="balance">Budget balance: </label></div>
                             </div>
                             <div class="forms-r">
                                 <div><input type="text" name="name" id="name" placeholder="{{ budget.name }}"></div>
                                 <div><input type="number" name="balance" id="balance" step=0.01></div>
                             </div>
                             <div style="clear:both"></div>
+
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+
+                                    {% for error in form.non_field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
     
                             <button class="btn btn-success" type="submit">Create</button>
                         {% endif %}
