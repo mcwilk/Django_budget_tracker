@@ -16,6 +16,14 @@ def test_user():
 
     return user
 
+@pytest.fixture()
+def test_user_login(client, test_user):
+    user = test_user
+    client.login(username=user, password="test_passwd")
+    logging.info("Test user has been logged in!")
+
+    return user
+
 @pytest.fixture
 def test_budget(test_user):
     user = test_user
