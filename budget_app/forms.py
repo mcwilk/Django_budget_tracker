@@ -26,10 +26,10 @@ class BudgetForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data.get('name')
 
-        if BudgetInfo.objects.filter(name=name).exists():
+        if BudgetInfo.objects.filter(name=name.upper()).exists():
             raise forms.ValidationError(f"Budget with name {name} already exists.")
-        elif len(name) < 3:
-            raise forms.ValidationError("Budget name must be at least 3 characters long.")
+        elif len(name) < 5:
+            raise forms.ValidationError("Budget name must be at least 5 characters long.")
 
         return name
 
