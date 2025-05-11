@@ -1,5 +1,6 @@
 assertpy==1.1
 asgiref==3.8.1
+beautifulsoup4==4.13.4
 Django==4.2
 psycopg2-binary==2.9.10
 pylint==3.3.6
