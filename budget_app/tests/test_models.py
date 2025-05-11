@@ -27,8 +27,7 @@ class TestModels:
         with soft_assertions():
             assert_that(BudgetInfo.objects.count()).is_equal_to(1)
             assert_that(budget.name).is_equal_to("budget1")
-            # TODO: add condition that if tested on DEV then it may fail (more users)
-            # assert_that(budget.owner_id).is_equal_to(1)
+            assert_that(budget.owner).is_equal_to(user)
             assert_that(budget.balance).is_equal_to(2000)
             assert_that(str(budget.created_on)).contains("2025-02-10")
 
