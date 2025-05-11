@@ -6,6 +6,11 @@ from django.contrib.auth.models import User
 from budget_app.models import BudgetInfo, Expenses
 
 
+@pytest.fixture(autouse=True)
+def enable_db_access_for_all_tests(db):
+    """Enables database access for all tests without using the @pytest.mark.django_db decorator"""
+    pass
+
 @pytest.fixture
 def test_user():
     if not User.objects.filter(username="test_user").exists():

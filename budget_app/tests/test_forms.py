@@ -7,7 +7,6 @@ from budget_app.forms import BudgetForm
 from budget_app.models import BudgetInfo
 
 
-@pytest.mark.django_db
 class TestForms:
 
     def test_budget_creation_with_valid_data(self, client, test_user_login):

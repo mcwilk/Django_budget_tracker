@@ -8,7 +8,6 @@ from django.utils import timezone
 from budget_app.models import BudgetInfo, Expenses
 
 
-@pytest.mark.django_db
 class TestModels:
 
     def test_budget_info_creation(self, test_user):
