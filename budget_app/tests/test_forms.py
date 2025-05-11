@@ -42,6 +42,8 @@ class TestForms:
         with pytest.raises(forms.ValidationError):
             form.clean_balance()  # needs to be called manually to raise the exception
 
+        assert_that(form.is_valid()).is_false()
+
     def test_budget_creation_with_existing_name(self, client, test_user_login):
         _ = test_user_login
         form_data = {'name': 'TestBudget', 'balance': 1000}
