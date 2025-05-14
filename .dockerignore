@@ -1,5 +1,5 @@
 .dockerignore
-.env_docker
+.env
 #.env*
 .gitignore
 .log
