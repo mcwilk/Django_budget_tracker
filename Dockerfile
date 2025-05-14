@@ -1,11 +1,13 @@
 FROM python:3.11-slim
 LABEL maintainer=mcwilk
 
+# Receive build.args
+ARG USER_NAME
+ARG USER_PASSWD
+
 # Set environment variables
-#ARG USER_NAME=$USER_NAME
-#ARG USER_PASSWD=$USER_PASSWD
-ENV USER_NAME=django_user
-ENV USER_PASSWD=django_user_passwd123
+ENV USER_NAME=${USER_NAME}
+ENV USER_PASSWD=${USER_PASSWD}
 
 ENV DEBIAN_FRONTEND=noninteractive
 # Use console for logs

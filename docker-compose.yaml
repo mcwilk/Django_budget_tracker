@@ -1,6 +1,11 @@
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_NAME: ${USER_NAME}
+        USER_PASSWD: ${USER_PASSWD}
     image: budget:1.0
     container_name: tracker
     volumes:
@@ -8,8 +13,8 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - .env_docker
-      - .env_dev
+      - .env_test
+      - .env
     depends_on:
       - db
     networks:
@@ -19,7 +24,7 @@ services:
     image: postgres:16-alpine3.20
     container_name: tracker_db
     env_file:
-      - .env_dev
+      - .env_test
     ports:
       - "5432:5432"
     volumes:
