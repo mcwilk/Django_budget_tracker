@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
 
       - name: Fetch origin
-        run: git fetch origin
+        run: git fetch origin master
 
       - name: Python setup
         uses: actions/setup-python@v4
@@ -31,9 +31,10 @@ jobs:
       - name: Get list of modified Python files
         id: changed-files
         run: |
-          CHANGED=$(git diff --name-only origin/master...HEAD -- '*.py')
-          echo "Changed files: $CHANGED"
-          echo "files=$CHANGED >> GITHUB_OUTPUT"
+          BASE=$(git merge-base origin/master HEAD)
+          FILES=$(git diff --name-only $BASE...HEAD -- '*.py' | tr '\n' ' ')
+          echo "Changed files: $FILES"
+          echo "files=$FILES >> GITHUB_OUTPUT"
 
       - name: Run linter and get results
         run: |
