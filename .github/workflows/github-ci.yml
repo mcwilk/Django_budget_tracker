@@ -7,6 +7,18 @@ jobs:
   linter:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
+
     steps:
-      - name: Static code checks with linter
+      - name: Clone repo to virtual machine (runner)
+        uses: actions/checkout@v3
+
+      - name: Python setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11.6
+
+      - name: Install linter
+        run: python -m pip install pylint==3.3.6
+
+      - name: Run linter
         run: pylint budget_app/admin.py
