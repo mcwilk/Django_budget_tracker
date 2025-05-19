@@ -26,7 +26,7 @@ jobs:
       - name: Get list of modified Python files
         id: changed-files
         run: |
-          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- '*.py')
+          CHANGED=$(git diff --name-only origin/master...HEAD -- '*.py')
           echo "Changed files: $CHANGED"
           echo "files=$CHANGED >> GITHUB_OUTPUT"
 
