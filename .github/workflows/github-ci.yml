@@ -9,7 +9,7 @@ jobs:
     if: github.event_name == 'push'
 
     steps:
-      - name: Clone repo to virtual machine (runner)
+      - name: Clone repo to VM (runner)
         uses: actions/checkout@v3
 
       - name: Python setup
@@ -18,7 +18,9 @@ jobs:
           python-version: 3.11.6
 
       - name: Install linter
-        run: python -m pip install pylint==3.3.6
+        run: |
+          python -m pip install --upgrade pip 
+          pip install -r requirements.txt
 
       - name: Run linter
         run: pylint budget_app/admin.py
