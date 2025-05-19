@@ -1,11 +1,12 @@
 name: test_ci
 on:
-  pull_request:
-    branches:
-      - master
+  push:
+    branches: [ "*" ]
+
 jobs:
-  build_and_test:
+  linter:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
-      - uses: actions/checkout@v3
-      - uses:
+      - name: Static code checks with linter
+        run: pylint budget_app/admin.py
