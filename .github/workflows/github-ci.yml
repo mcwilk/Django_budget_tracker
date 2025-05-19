@@ -23,9 +23,16 @@ jobs:
           pip install -r requirements.txt
           sudo apt-get update && sudo apt-get install -y bc
 
+      - name: Get list of modified Python files
+        id: changed-files
+        run: |
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- '*.py')
+          echo "Changed files: $CHANGED"
+          echo "files=$CHANGED >> GITHUB_OUTPUT"
+
       - name: Run linter and get results
         run: |
-          SCORE=$(pylint budget_app/admin.py | grep 'Your code has been rated' | awk '{print $7}' | cut -d'/' -f1)
+          SCORE=$(pylint ${{ steps.changed-files.outputs.files }} | grep 'Your code has been rated' | awk '{print $7}' | cut -d'/' -f1)
           LIMIT=9.9
           COMPARE=$(echo "$SCORE < $LIMIT" | bc)
           if [ "$COMPARE" -eq 1 ]; then
