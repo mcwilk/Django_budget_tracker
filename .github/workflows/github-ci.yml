@@ -14,9 +14,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Fetch origin
-        run: git fetch origin master
-
       - name: Python setup
         uses: actions/setup-python@v4
         with:
@@ -31,6 +28,7 @@ jobs:
       - name: Run linter
         id: linter
         run: |
+          git fetch origin master
           SCORE_LIMIT=9.9
           BASE=$(git merge-base origin/master HEAD)
           FILES=$(git diff --name-only --diff-filter=ACMR $BASE...HEAD | grep '\.py$' | paste -sd' ' - || true)
