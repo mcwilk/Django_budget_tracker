@@ -28,22 +28,20 @@ jobs:
           pip install -r requirements.txt
           sudo apt-get update && sudo apt-get install -y bc
 
-      - name: Get list of modified Python files
-        id: changed-files
+      - name: Run linter
+        id: linter
         run: |
+          SCORE_LIMIT=9.9
           BASE=$(git merge-base origin/master HEAD)
-          FILES=$(git diff --name-only $BASE...HEAD -- '*.py' | tr '\n' ' ')
-          echo "Changed files: $FILES"
-          echo "files=$FILES >> $GITHUB_OUTPUT"
-
-      - name: Run linter and get results
-        run: |
-          SCORE=$(pylint ${{ steps.changed-files.outputs.files }} | grep 'Your code has been rated' | awk '{print $7}' | cut -d'/' -f1)
-          LIMIT=9.9
-          COMPARE=$(echo "$SCORE < $LIMIT" | bc)
-          if [ "$COMPARE" -eq 1 ]; then
-            echo "Static check rating is too low: $SCORE/10.0 - required: $LIMIT"
-            exit 1
+          FILES=$(git diff --name-only --diff-filter=ACMR $BASE...HEAD | grep '\.py'$ || true)
+          if [ -z "$FILES" ]; then
+            echo "No python files has been changed, skipping linter"
           else
-            echo "Static check rating is OK ($SCORE/10.0)"
-          fi
+            echo "Changed files: $FILES"
+            SCORE=$(pylint $FILES | grep 'Your code has been rated' | awk '{print $7}' | cut -d'/' -f1)
+            echo "Static check score: $SCORE/10.0 - required: $SCORE_LIMIT"
+            COMPARE=$(echo "$SCORE < $SCORE_LIMIT" | bc -l)
+            if [ "$COMPARE" -eq 1 ]; then 
+              echo "Code rating below threshold. Failing the job." exit 1; 
+            fi;
+          fi;
