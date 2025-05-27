@@ -41,8 +41,9 @@ jobs:
             SCORE=$(pylint $FILES | grep 'Your code has been rated' | awk '{print $7}' | cut -d'/' -f1)
             echo "Static check score: $SCORE/10.0 - required: $SCORE_LIMIT"
             COMPARE=$(echo "$SCORE < $SCORE_LIMIT" | bc -l)
-            echo "Raw pylint output:"
-            cat pylint.log
+            echo "::group::FILES as single line"
+            echo "$FILES" | cat -A
+            echo "::endgroup::"
             echo "Parsed SCORE: $SCORE"
             echo "Compare result: $COMPARE"
             if [ "$COMPARE" -eq 1 ]; then 
