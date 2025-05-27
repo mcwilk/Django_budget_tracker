@@ -33,7 +33,7 @@ jobs:
         run: |
           SCORE_LIMIT=9.9
           BASE=$(git merge-base origin/master HEAD)
-          FILES=$(git diff --name-only --diff-filter=ACMR $BASE...HEAD | grep '\.py$' | paste -sd' ' - || true)
+          FILES=$(git diff --name-only --diff-filter=ACMR $BASE...HEAD | grep '\.py'$ | paste -sd' ' - || true)
           if [ -z "$FILES" ]; then
             echo "No python files has been changed, skipping linter"
           else
