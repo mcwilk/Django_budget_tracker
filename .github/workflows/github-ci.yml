@@ -1,0 +1,48 @@
+name: test_ci
+on:
+  push:
+    branches: [ "*" ]
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - name: Clone repo to VM (runner)
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Fetch origin
+        run: git fetch origin master
+
+      - name: Python setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11.6
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip 
+          pip install -r requirements.txt
+          sudo apt-get update && sudo apt-get install -y bc
+
+      - name: Run linter
+        id: linter
+        run: |
+          SCORE_LIMIT=9.9
+          BASE=$(git merge-base origin/master HEAD)
+          FILES=$(git diff --name-only --diff-filter=ACMR $BASE...HEAD | grep '\.py'$ | paste -sd' ' - || true)
+          if [ -z "$FILES" ]; then
+            echo "No python files has been changed, skipping linter"
+          else
+            echo "Changed files: $FILES"
+            SCORE=$(pylint $FILES | grep 'Your code has been rated' | awk '{print $7}' | cut -d'/' -f1)
+            echo "Static check score: $SCORE/10.0 - required: $SCORE_LIMIT"
+            COMPARE=$(echo "$SCORE < $SCORE_LIMIT" | bc -l)
+            if [ "$COMPARE" -eq 1 ]; then 
+              echo "Code rating below threshold. Failing the job." 
+              exit 1 
+            fi
+          fi

@@ -6,7 +6,7 @@ from budget_app.models import BudgetInfo, Expenses
 
 
 class BudgetForm(forms.ModelForm):
-    
+
     class Meta:
         model = BudgetInfo
         fields = ['name', 'balance']
@@ -28,7 +28,8 @@ class BudgetForm(forms.ModelForm):
 
         if BudgetInfo.objects.filter(name=name.upper()).exists():
             raise forms.ValidationError(f"Budget with name {name} already exists.")
-        elif len(name) < 5:
+
+        if len(name) < 5:
             raise forms.ValidationError("Budget name must be at least 5 characters long.")
 
         return name
@@ -43,7 +44,7 @@ class ExpenseForm(forms.ModelForm):
 
 
 class SignupForm(UserCreationForm):
-    
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
