@@ -5,6 +5,7 @@ on:
 
 jobs:
   linter:
+    name: Run linter for static testing
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
 
@@ -25,11 +26,10 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip 
-          pip install -r requirements.txt
+          pip install pylint
           sudo apt-get update && sudo apt-get install -y bc
 
       - name: Run linter
-        id: linter
         run: |
           SCORE_LIMIT=9.9
           BASE=$(git merge-base origin/master HEAD)
@@ -46,3 +46,28 @@ jobs:
               exit 1 
             fi
           fi
+
+  test:
+    name: Run unit and integration tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.base_ref == 'master'
+
+    steps:
+      - name: Clone repo to VM (runner)
+        uses: actions/checkout@v3
+
+      - name: Fetch origin
+        run: git fetch origin master
+
+      - name: Python setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11.6
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest --ignore=budget_app/tests/smoke/
