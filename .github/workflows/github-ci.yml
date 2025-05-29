@@ -2,6 +2,8 @@ name: test_ci
 on:
   push:
     branches: [ "*" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   linter:
