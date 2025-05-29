@@ -56,6 +56,11 @@ jobs:
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
 
     services:
       postgres:
