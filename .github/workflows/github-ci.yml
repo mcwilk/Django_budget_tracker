@@ -95,6 +95,3 @@ jobs:
 
       - name: Run tests
         run: pytest --ignore=budget_app/tests/smoke/
-        env:
-          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
