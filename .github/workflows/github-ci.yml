@@ -79,11 +79,6 @@ jobs:
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
     steps:
-      - name: Test Postgres connection
-        run: |
-          ping -c 3 postgres
-          pg_isready -h postgres -p 5432 -U user
-
       - name: Clone repo to VM (runner)
         uses: actions/checkout@v3
 
