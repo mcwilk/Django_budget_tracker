@@ -12,7 +12,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 if not SECRET_KEY:
-    raise ValueError("The SECRET_KEY environment variable is not set. Please set it in your .env file.")
+    raise ValueError(
+        "The SECRET_KEY environment variable is not set. Please set it in your .env file."
+    )
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False")
