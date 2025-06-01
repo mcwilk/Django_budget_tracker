@@ -77,6 +77,13 @@ jobs:
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
     steps:
+      - name: Wait for Postgres to be ready
+        run: | 
+          until nc -z $POSTGRES_HOST $POSTGRES_PORT; do
+          echo "Waiting for Postgres..."
+          sleep 2
+          done
+
       - name: Clone repo to VM (runner)
         uses: actions/checkout@v3
 
