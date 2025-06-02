@@ -86,7 +86,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Set-up django database
+      - name: Django database setup
         run: |
           python manage.py makemigrations
           python manage.py migrate
@@ -94,3 +94,45 @@ jobs:
       - name: Run tests
         run: |
           pytest --ignore=budget_app/tests/smoke/
+
+  deploy_and_smoke:
+    name: App deploy and smoke tests
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Clone repo to VM (runner)
+        uses: actions/checkout@v3
+
+      - name: Create .env files
+        run: |
+          cat <<EOF > .env_test
+          DJANGO_ENV=${{ secrets.DJANGO_ENV }}
+          DEBUG=${{ secrets.DEBUG }}
+          SECRET_KEY=${{ secrets.SECRET_KEY }}
+          ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}
+          POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
+          DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+          DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+          DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+          DJANGO_GENERIC_USERNAME=${{ secrets.DJANGO_GENERIC_USERNAME }}
+          DJANGO_GENERIC_EMAIL=${{ secrets.DJANGO_GENERIC_EMAIL }}
+          DJANGO_GENERIC_PASSWORD=${{ secrets.DJANGO_GENERIC_PASSWORD }}         
+          EOF
+          cat <<EOF > .env
+          USER_NAME=${{ secrets.USER_NAME }}
+          USER_PASSWD=${{ secrets.USER_PASSWD }}
+          EOF
+
+      - name: Set-up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and run docker container
+        run: docker-compose -f docker-compose.yml -p myproj up -d
+
+      - name: Run smoke tests
+        run: pytest budget_app/tests/smoke/
