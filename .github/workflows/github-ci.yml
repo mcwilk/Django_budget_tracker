@@ -135,4 +135,4 @@ jobs:
         run: docker compose -f docker-compose.yaml -p myproj up -d
 
       - name: Run smoke tests
-        run: docker exec -it tracker pytest budget_app/tests/smoke/
+        run: docker exec tracker pytest budget_app/tests/smoke/
