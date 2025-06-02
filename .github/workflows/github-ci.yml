@@ -87,4 +87,6 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DJANGO_ENV: test
         run: |
+          python manage.py makemigrations
+          python manage.py migrate
           pytest --ignore=budget_app/tests/smoke/
