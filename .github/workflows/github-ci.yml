@@ -84,7 +84,6 @@ jobs:
 
       - name: Install Postgres client
         run: |
-          apt-get update
           apt-get install --yes postgresql-client
 
       - name: Install dependencies
