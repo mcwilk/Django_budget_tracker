@@ -134,5 +134,13 @@ jobs:
       - name: Build and run docker container
         run: docker compose -f docker-compose.yaml -p myproj up -d
 
+      - name: Wait for Django app
+        run: |
+          for i in {1..20}; do
+            docker exec tracker curl -f http://localhost:8000/ && break
+            echo "Waiting for Django..."
+            sleep 2
+          done
+
       - name: Run smoke tests
         run: docker exec tracker pytest budget_app/tests/smoke/
