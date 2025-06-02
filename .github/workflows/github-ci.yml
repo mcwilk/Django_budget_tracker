@@ -54,25 +54,21 @@ jobs:
       postgres:
         image: postgres:16-alpine3.20
         env:
-          POSTGRES_DB: db_name
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres_db
+          POSTGRES_USER: postgres_user
+          POSTGRES_PASSWORD: postgres_pass
+          POSTGRES_PORT: 5432
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 60s
           --health-retries 5
-        ports:
-          - 5432:5432
 
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       DJANGO_ENV: test
-      POSTGRES_DB: budget_app_db
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_USER: budget_app_user_test
-      POSTGRES_PASSWORD: welcomeToTheDjangoTest
 
     steps:
       - name: Clone repo to VM (runner)
@@ -86,12 +82,24 @@ jobs:
         with:
           python-version: 3.11.6
 
+      - name: Install Postgres client
+        run: |
+          apt-get update
+          apt-get install --yes postgresql-client
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run tests
+      - name: Install database
+        run: |
+          psql -h postgres -d postgres_db -U postgres_user -c  'CREATE DATABASE budget_test;' -U postgres
+          psql -h postgres -d postgres_db -U postgres_user -c  "CREATE USER budget_user WITH PASSWORD 'budget_user';" -U postgres
+          psql -h postgres -d postgres_db -U postgres_user -c  'GRANT ALL PRIVILEGES ON DATABASE budget_test TO budget_user;' -U postgres
         env:
-          DATABASE_URL: postgres://postgres:postgres@127.0.0.1:${{ job.services.postgres.ports['5432'] }}/dbname
-        run: pytest --ignore=budget_app/tests/smoke/
+          PGPASSWORD: postgres_pass
+
+      - name: Run tests
+        run: |
+          pytest --ignore=budget_app/tests/smoke/
