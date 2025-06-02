@@ -12,7 +12,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 if not SECRET_KEY:
-    raise ValueError("The SECRET_KEY environment variable is not set. Please set it in your .env file.")
+    raise ValueError(
+        "The SECRET_KEY environment variable is not set. Please set it in your .env file."
+    )
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False")
@@ -63,11 +65,11 @@ WSGI_APPLICATION = 'budget_config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('POSTGRES_HOST'),
-        'PORT': os.environ.get('POSTGRES_PORT'),
+        'NAME': 'postgres' if ENV == 'test' else os.environ.get('POSTGRES_DB'),
+        'USER': 'postgres' if ENV == 'test' else os.environ.get('POSTGRES_USER'),
+        'PASSWORD': 'postgres' if ENV == 'test' else os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'localhost' if ENV == 'test' else os.environ.get('POSTGRES_HOST'),
+        'PORT': 5432 if ENV == 'test' else os.environ.get('POSTGRES_PORT'),
     }
 }
 

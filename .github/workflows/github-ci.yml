@@ -1,13 +1,12 @@
 name: test_ci
 on:
-  push:
-    branches: [ "*" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   linter:
-    name: Run linter for static testing
+    name: Linter
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
 
     steps:
       - name: Clone repo to VM (runner)
@@ -25,8 +24,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip 
-          pip install pylint
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
           sudo apt-get update && sudo apt-get install -y bc
 
       - name: Run linter
@@ -48,9 +47,27 @@ jobs:
           fi
 
   test:
-    name: Run unit and integration tests
+    name: Integration tests
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.base_ref == 'master'
+
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
+
+    services:
+      test_db:
+        image: postgres:16-alpine3.20
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 60s
+          --health-retries 5
 
     steps:
       - name: Clone repo to VM (runner)
@@ -69,5 +86,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set-up django database
+        run: |
+          python manage.py makemigrations
+          python manage.py migrate
+
       - name: Run tests
-        run: pytest --ignore=budget_app/tests/smoke/
+        run: |
+          pytest --ignore=budget_app/tests/smoke/

@@ -16,6 +16,7 @@ class BudgetForm(forms.ModelForm):
         }
 
     def clean_balance(self):
+        """Method to validate balance value"""
         balance = self.cleaned_data.get('balance')
 
         if balance < 0:
@@ -24,6 +25,7 @@ class BudgetForm(forms.ModelForm):
         return balance
 
     def clean_name(self):
+        """Method to validate balance name"""
         name = self.cleaned_data.get('name')
 
         if BudgetInfo.objects.filter(name=name.upper()).exists():
