@@ -132,7 +132,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build and run docker container
-        run: docker-compose -f docker-compose.yml -p myproj up -d
+        run: docker-compose -f docker-compose.yaml -p myproj up -d
 
       - name: Run smoke tests
         run: pytest budget_app/tests/smoke/
