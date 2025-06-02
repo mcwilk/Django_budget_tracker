@@ -65,11 +65,11 @@ WSGI_APPLICATION = 'budget_config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': 'postgres' if ENV == 'test ' else os.environ.get('POSTGRES_DB'),
+        'USER': 'postgres' if ENV == 'test ' else os.environ.get('POSTGRES_USER'),
+        'PASSWORD': 'postgres' if ENV == 'test ' else os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'localhost' if ENV == 'test ' else os.environ.get('POSTGRES_HOST'),
+        'PORT': 5432 if ENV == 'test ' else os.environ.get('POSTGRES_PORT'),
     }
 }
 

@@ -55,12 +55,12 @@ jobs:
       DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
 
     services:
-      db:
+      test_db:
         image: postgres:16-alpine3.20
         env:
           POSTGRES_DB: postgres
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
         options: >-
