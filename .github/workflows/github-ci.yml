@@ -54,23 +54,16 @@ jobs:
       postgres:
         image: postgres:16-alpine3.20
         env:
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: db_name
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 60s
           --health-retries 5
-
-    env:
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DJANGO_ENV: test
-      POSTGRES_DB: budget_app_db
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_USER: budget_app_user_test
-      POSTGRES_PASSWORD: welcomeToTheDjangoTest
+        ports:
+          - 5432:5432
 
     steps:
       - name: Clone repo to VM (runner)
@@ -90,13 +83,7 @@ jobs:
           pip install -r requirements.txt
           sudo apt-get install -y netcat-traditional
 
-      - name: Wait for Postgres to be ready
-        run: | 
-          echo "$POSTGRES_DB $POSTGRES_HOST $POSTGRES_PORT $POSTGRES_USER $POSTGRES_PASSWORD"
-          until nc -z $POSTGRES_HOST $POSTGRES_PORT; do
-            echo "Still waiting for Postgres..."
-            sleep 2
-          done
-
       - name: Run tests
+        env:
+          DATABASE_URL: postgres://postgres:postgres@127.0.0.1:${{ job.services.postgres.ports['5432'] }}/dbname
         run: pytest --ignore=budget_app/tests/smoke/
