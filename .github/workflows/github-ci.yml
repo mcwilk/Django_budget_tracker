@@ -58,12 +58,9 @@ jobs:
       test_db:
         image: postgres:16-alpine3.20
         env:
-          DJANGO_ENV: test
           POSTGRES_DB: postgres
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
         ports:
           - 5432:5432
         options: >-
@@ -103,9 +100,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
 
-    env:
-      DJANGO_ENV=${{ secrets.DJANGO_ENV }}
-
     steps:
       - name: Clone repo to VM (runner)
         uses: actions/checkout@v3
@@ -113,6 +107,7 @@ jobs:
       - name: Create .env files
         run: |
           cat <<EOF > .env_test
+          DJANGO_ENV=${{ secrets.DJANGO_ENV }}
           DEBUG=${{ secrets.DEBUG }}
           SECRET_KEY=${{ secrets.SECRET_KEY }}
           ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}
