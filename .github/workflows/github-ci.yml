@@ -139,6 +139,9 @@ jobs:
       - name: Build and run docker container
         run: docker compose -p myproj up -d
 
+      - name: Show Django container logs
+        run: docker logs tracker
+
       - name: Waiting for Django app
         run: |
           for i in {1..20}; do
