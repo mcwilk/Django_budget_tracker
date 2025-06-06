@@ -12,7 +12,6 @@ until nc -z "$POSTGRES_HOST" "$POSTGRES_PORT"; do
 done
 echo "Postgres is up!"
 
-python manage.py makemigrations
 python manage.py migrate
 
 if [[ "$DJANGO_ENV" == "dev" || "$DJANGO_ENV" == "test" ]]; then

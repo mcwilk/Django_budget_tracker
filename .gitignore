@@ -4,5 +4,6 @@ __pycache__
 .idea
 budget_app/migrations/*
 !budget_app/migrations/__init__.py
+!budget_app/migrations/*initial.py
 venv
 static
