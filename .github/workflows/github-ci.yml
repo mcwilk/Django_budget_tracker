@@ -49,12 +49,12 @@ jobs:
             fi
           fi
 
-  test:
-    name: Integration tests
+  int_test:
+    name: Integration testing
     runs-on: ubuntu-latest
 
     env:
-      DJANGO_ENV: integration
+      DJANGO_ENV: int_test
 
     services:
       test_db:
@@ -97,10 +97,10 @@ jobs:
         run: |
           pytest --ignore=budget_app/tests/smoke/
 
-  deploy_and_smoke:
-    name: App deploy and smoke tests
+  build_and_smoke:
+    name: Build and smoke testing
     runs-on: ubuntu-latest
-    needs: test
+    needs: int_test
 
     env:
       DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
