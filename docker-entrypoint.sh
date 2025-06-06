@@ -6,6 +6,7 @@ set -eu
 
 echo "Running entrypoint script..."
 echo "Waiting for Postgres..."
+# netcat tries to ping database with host:port
 until nc -z "$POSTGRES_HOST" "$POSTGRES_PORT"; do
     sleep 1
 done

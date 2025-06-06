@@ -21,7 +21,7 @@ WORKDIR /budget_tracker
 # Set environment
 COPY requirements.txt .
 RUN apt-get update &&  \
-    apt-get install -y bash nano netcat-openbsd passwd &&  \
+    apt-get install -y bash nano netcat-openbsd passwd curl &&  \
     groupadd "$USER_NAME" &&  \
     useradd -g "$USER_NAME" -p "$USER_PASSWD" "$USER_NAME" && \
     pip install --no-cache-dir -r requirements.txt
