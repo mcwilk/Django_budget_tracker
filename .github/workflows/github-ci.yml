@@ -103,7 +103,7 @@ jobs:
     needs: test
 
     env:
-      DJANGO_ENV=${{ secrets.DJANGO_ENV }}
+      DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
 
     steps:
       - name: Clone repo to VM (runner)
