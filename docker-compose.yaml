@@ -4,9 +4,10 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        USER_NAME: ${USER_NAME}
-        USER_PASSWD: ${USER_PASSWD}
-    image: budget:1.0
+        USER_NAME: "appuser"
+        USER_GROUP: "appgroup"
+        USER_GROUP_ID: 1001
+    image: budget-app:1.0.0
     container_name: tracker
     volumes:
       - .:/tracker_volume
@@ -14,7 +15,6 @@ services:
       - "8000:8000"
     env_file:
       - .env_test
-      - .env
     depends_on:
       - db
     networks:
