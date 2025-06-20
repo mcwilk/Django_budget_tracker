@@ -140,11 +140,16 @@ jobs:
       - name: Waiting for Django app
         run: |
           for i in {1..20}; do
-            docker exec tracker curl -f http://localhost:8001/ && break
-            echo "Waiting for Django..."
-            sleep 2
+            if docker exec tracker curl -f http://localhost:8001/; then
+              echo "Django container is up and running!"
+              exit 0
+            else
+              echo "Waiting for Django..."
+              sleep 2
+            fi
           done
-          echo "Django container is up and running!"
+          echo "Failed to connect to Django container after 20 attempts!"
+          exit 1
 
       - name: Run smoke tests
         run: docker exec tracker pytest budget_app/tests/smoke
