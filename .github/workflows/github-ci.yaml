@@ -140,7 +140,7 @@ jobs:
       - name: Waiting for Django app
         run: |
           for i in {1..20}; do
-            docker exec tracker curl -f http://localhost:8000/ && break
+            docker exec tracker curl -f http://localhost:8001/ && break
             echo "Waiting for Django..."
             sleep 2
           done
