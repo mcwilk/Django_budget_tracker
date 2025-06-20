@@ -140,7 +140,7 @@ jobs:
       - name: Waiting for Django app
         run: |
           for i in {1..20}; do
-            if docker exec tracker curl -f http://localhost:8001/; then
+            if docker exec tracker curl -f http://localhost:8000/; then
               echo "Django container is up and running!"
               exit 0
             else
