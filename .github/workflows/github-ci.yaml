@@ -108,7 +108,7 @@ jobs:
       - name: Clone repo to VM (runner)
         uses: actions/checkout@v3
 
-      - name: Create .env files
+      - name: Create .env file
         run: |
           cat <<EOF > .env_test
           DJANGO_ENV=${{ secrets.DJANGO_ENV }}
@@ -126,10 +126,6 @@ jobs:
           DJANGO_GENERIC_USERNAME=${{ secrets.DJANGO_GENERIC_USERNAME }}
           DJANGO_GENERIC_EMAIL=${{ secrets.DJANGO_GENERIC_EMAIL }}
           DJANGO_GENERIC_PASSWORD=${{ secrets.DJANGO_GENERIC_PASSWORD }}         
-          EOF
-          cat <<EOF > .env
-          USER_NAME=${{ secrets.USER_NAME }}
-          USER_PASSWD=${{ secrets.USER_PASSWD }}
           EOF
 
       - name: Set-up Docker
