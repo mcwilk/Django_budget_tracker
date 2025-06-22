@@ -24,7 +24,7 @@ jobs:
           
       - name: Build and push
         run: |
-          docker build -t "${DOCKERHUB_USER}"/budget:${IMAGE_TAG}" .
-          docker push "${DOCKERHUB_USER}"/budget:${IMAGE_TAG}"
+          docker build -t ${DOCKERHUB_USER}/budget:${IMAGE_TAG} .
+          docker push ${DOCKERHUB_USER}"/budget:${IMAGE_TAG}
         env:
           DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
