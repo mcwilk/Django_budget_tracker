@@ -2,7 +2,7 @@ assertpy==1.1
 asgiref==3.8.1
 astroid==3.3.9
 beautifulsoup4==4.13.4
-Django==4.2
+Django==4.2.22
 psycopg2-binary==2.9.10
 pylint==3.3.6
 pytest==8.3.5
