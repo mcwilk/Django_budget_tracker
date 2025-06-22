@@ -32,9 +32,9 @@ jobs:
       - name: Build and push
         run: |
           docker build \
-          --build-arg USER_NAME=${{ env.USER_NAME }}
-          --build-arg USER_GROUP=${{ env.USER_GROUP }}
-          --build-arg USER_GROUP_ID=${{ env.USER_GROUP_ID }}
+          --build-arg USER_NAME=${{ env.USER_NAME }} \
+          --build-arg USER_GROUP=${{ env.USER_GROUP }} \
+          --build-arg USER_GROUP_ID=${{ env.USER_GROUP_ID }} \
           -t ${DOCKERHUB_USER}/budget:${IMAGE_TAG} .
           docker push ${DOCKERHUB_USER}"/budget:${IMAGE_TAG}
         env:
