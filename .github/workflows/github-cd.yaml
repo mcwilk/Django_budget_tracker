@@ -36,6 +36,6 @@ jobs:
           --build-arg USER_GROUP=${{ env.USER_GROUP }} \
           --build-arg USER_GROUP_ID=${{ env.USER_GROUP_ID }} \
           -t ${DOCKERHUB_USER}/budget:${IMAGE_TAG} .
-          docker push ${DOCKERHUB_USER}"/budget:${IMAGE_TAG}
+          docker push ${DOCKERHUB_USER}/budget:${IMAGE_TAG}
         env:
           DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
