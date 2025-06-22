@@ -1,5 +1,6 @@
 name: build & deliver
 on:
+  # Workflow runs whenever new tag is created locally ang pushed to repo
   push:
     tags:
       - '1.*.*'
