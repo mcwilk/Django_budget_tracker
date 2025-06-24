@@ -48,7 +48,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "Update deployment image tag to ${{ env.IMAGE_TAG }}"
-          title: "Deployment tag:${{ env.IMAGE_TAG }}"
+          title: "Deployment tag-${{ env.IMAGE_TAG }}"
           body: "Automatic PR to update app deployment image tag"
-          branch: deploy/tag:${{ env.IMAGE_TAG }}
+          branch: deploy/tag-${{ env.IMAGE_TAG }}
           base: master
