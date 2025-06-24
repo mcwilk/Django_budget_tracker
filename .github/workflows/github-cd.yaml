@@ -1,6 +1,6 @@
 name: build & deliver
 on:
-  # Workflow runs whenever new tag is created locally ang pushed to repo
+  # Workflow runs whenever new tag is created locally ang pushed to the repo
   push:
     tags:
       - '1.*.*'
@@ -14,6 +14,7 @@ jobs:
       USER_NAME: "appuser"
       USER_GROUP: "appgroup"
       USER_GROUP_ID: 1001
+      DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
 
     steps:
       - name: Clone code to VM (runner)
@@ -37,6 +38,8 @@ jobs:
           --build-arg USER_GROUP=${{ env.USER_GROUP }} \
           --build-arg USER_GROUP_ID=${{ env.USER_GROUP_ID }} \
           -t ${DOCKERHUB_USER}/budget:${IMAGE_TAG} .
-          docker push ${DOCKERHUB_USER}/budget:${IMAGE_TAG}
-        env:
-          DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+          docker push ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}
+
+      - name: Update deployment.yaml with new tag
+        run: |
+          sed -i "s|image: ${{ env.DOCKERHUB_USER }}/budget:.*|image: ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}" k8s/deployment.yaml
