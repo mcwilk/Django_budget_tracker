@@ -40,7 +40,15 @@ jobs:
           -t ${DOCKERHUB_USER}/budget:${IMAGE_TAG} .
           docker push ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}
 
-      - name: Update deployment.yaml with new tag
+      - name: Update deployment with a new tag
         run: |
           sed -i "s|image: ${{ env.DOCKERHUB_USER }}/budget:.*|image: ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}|" k8s/deployment.yaml
-          cat k8s/deployment.yaml
+
+      - name: Create PR for a new tag
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Update deployment image tag to ${IMAGE_TAG}"
+          title: "Deployment tag update: ${IMAGE_TAG}"
+          body: "Automatic PR to update app deployment image tag"
+          branch: deploy/tag-${IMAGE_TAG}
+          base: master
