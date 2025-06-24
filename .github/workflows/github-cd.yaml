@@ -52,3 +52,8 @@ jobs:
           body: "Automatic PR to update app deployment image tag"
           branch: deploy/tag-${{ env.IMAGE_TAG }}
           base: master
+          assignees: mcwilk
+          reviewers: mcwilk
+          labels: |
+            deployment
+            gitops
