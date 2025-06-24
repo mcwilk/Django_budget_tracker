@@ -1,18 +1,27 @@
 name: build & deliver
 on:
+  # Workflow runs whenever new tag is created locally ang pushed to the repo
   push:
     tags:
       - '1.*.*'
 
 jobs:
   build-push-update:
+    name: Build image and push to DockerHub
     runs-on: ubuntu-latest
+
+    env:
+      USER_NAME: "appuser"
+      USER_GROUP: "appgroup"
+      USER_GROUP_ID: 1001
+      DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
 
     steps:
       - name: Clone code to VM (runner)
-        uses: actions/chechout@v3
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v3
+
+      - name: Set-up Docker
+        uses: docker/setup-buildx-action@v2
 
       - name: Set image tag
         run: |
@@ -20,11 +29,17 @@ jobs:
 
       - name: Log in to DockerHub
         run: |
-          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USER }}" --password
-          
+          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USER }}" --password-stdin
+
       - name: Build and push
         run: |
-          docker build -t "${DOCKERHUB_USER}"/budget:${IMAGE_TAG}" .
-          docker push "${DOCKERHUB_USER}"/budget:${IMAGE_TAG}"
-        env:
-          DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+          docker build \
+          --build-arg USER_NAME=${{ env.USER_NAME }} \
+          --build-arg USER_GROUP=${{ env.USER_GROUP }} \
+          --build-arg USER_GROUP_ID=${{ env.USER_GROUP_ID }} \
+          -t ${DOCKERHUB_USER}/budget:${IMAGE_TAG} .
+          docker push ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}
+
+      - name: Update deployment.yaml with new tag
+        run: |
+          sed -i "s|image: ${{ env.DOCKERHUB_USER }}/budget:.*|image: ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}" k8s/deployment.yaml
