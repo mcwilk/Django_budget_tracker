@@ -42,4 +42,4 @@ jobs:
 
       - name: Update deployment.yaml with new tag
         run: |
-          sed -i "s|image: ${{ env.DOCKERHUB_USER }}/budget:.*|image: ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}" k8s/deployment.yaml
+          sed -i "s|image: ${{ env.DOCKERHUB_USER }}/budget:.*|image: ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}|" k8s/deployment.yaml
