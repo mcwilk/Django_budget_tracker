@@ -30,7 +30,7 @@ jobs:
       - name: Log in to DockerHub
         run: |
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USER }}" --password-stdin
-
+          
       - name: Build and push
         run: |
           docker build \
