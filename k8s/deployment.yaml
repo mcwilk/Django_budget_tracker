@@ -1,4 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracker-deployment
 spec:
-  containers:
-    - name: tracker
-      image: mcwilkdev/budget:1.2.8
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tracker
+  template:
+    metadata:
+      labels:
+        app: tracker
+    spec:
+      containers:
+        - name: tracker
+          image: mcwilkdev/budget:1.2.8
+          ports:
+            - containerPort: 8000
