@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: tracker
-          image: mcwilkdev/budget:1.2.8
+          image: mcwilkdev/budget:1.2.9
           ports:
             - containerPort: 8000
