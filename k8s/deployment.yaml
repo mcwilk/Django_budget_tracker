@@ -17,3 +17,64 @@ spec:
           image: mcwilkdev/budget:1.2.8
           ports:
             - containerPort: 8000
+          env:
+            - name: DJANGO_ENV
+              value: staging
+            - name: DEBUG
+              value: "False"
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: tracker-secret
+                  key: SECRET_KEY
+            - name: ALLOWED_HOSTS
+              value: "tracker.local,localhost,127.0.0.1"
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: secret-postgres
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secret-postgres
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret-postgres
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_HOST
+              value: service-postgres
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: DJANGO_SUPERUSER_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: tracker-secret
+                  key: DJANGO_SUPERUSER_USERNAME
+            - name: DJANGO_SUPERUSER_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: tracker-secret
+                  key: DJANGO_SUPERUSER_EMAIL
+            - name: DJANGO_SUPERUSER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: tracker-secret
+                  key: DJANGO_SUPERUSER_PASSWORD
+            - name: DJANGO_GENERIC_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: tracker-secret
+                  key: DJANGO_GENERIC_USERNAME
+            - name: DJANGO_GENERIC_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: tracker-secret
+                  key: DJANGO_GENERIC_EMAIL
+            - name: DJANGO_GENERIC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: tracker-secret
+                  key: DJANGO_GENERIC_PASSWORD

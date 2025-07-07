@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: budget-migrate
+spec:
+  template:
+    spec:
+      containers:
+      - name: migrations
+        image: mcwilkdev/budget:1.2.8
+        env:
+        - name: DJANGO_ENV
+          value: staging
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: secret-postgres
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: secret-postgres
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-postgres
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_HOST
+          value: service-postgres
+        - name: POSTGRES_PORT
+          value: "5432"
+        command: ["python", "manage.py", "migrate"]
+      restartPolicy: Never
+  backoffLimit: 4

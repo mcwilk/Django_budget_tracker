@@ -43,6 +43,7 @@ jobs:
       - name: Update deployment with a new tag
         run: |
           sed -i "s|image: ${{ env.DOCKERHUB_USER }}/budget:.*|image: ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}|" k8s/deployment.yaml
+          sed -i "s|image: ${{ env.DOCKERHUB_USER }}/budget:.*|image: ${{ env.DOCKERHUB_USER }}/budget:${IMAGE_TAG}|" k8s/job-migrate.yaml
 
       - name: Create PR for a new tag
         uses: peter-evans/create-pull-request@v6
