@@ -17,7 +17,7 @@ if not SECRET_KEY:
     )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False")
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1").split(",")
 
@@ -69,7 +69,7 @@ DATABASES = {
         'USER': 'postgres' if ENV == 'int_test' else os.environ.get('POSTGRES_USER'),
         'PASSWORD': 'postgres' if ENV == 'int_test' else os.environ.get('POSTGRES_PASSWORD'),
         'HOST': 'localhost' if ENV == 'int_test' else os.environ.get('POSTGRES_HOST'),
-        'PORT': 5432 if ENV == 'int_test' else os.environ.get('POSTGRES_PORT'),
+        'PORT': 5432,
     }
 }
 
