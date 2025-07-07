@@ -6,5 +6,6 @@ spec:
   selector:
     app: tracker
   ports:
-    - port: 80
+    - protocol: TCP
+      port: 8000
       targetPort: 8000

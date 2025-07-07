@@ -11,11 +11,13 @@ spec:
         env:
         - name: DJANGO_ENV
           value: staging
-        - name: POSTGRES_DB
+        - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: secret-postgres
-              key: POSTGRES_DB
+              name: tracker-secret
+              key: SECRET_KEY
+        - name: POSTGRES_DB
+          value: "budget_app_db"
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
