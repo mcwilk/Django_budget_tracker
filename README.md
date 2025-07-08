@@ -32,9 +32,6 @@ A Django-based web app for tracking and categorizing personal expenses and equip
 
 ![Screenshot3](other/screenshots/analysis_v1.png)
 
-### 🧪 CI/CD Pipelines Overview
-
-
 ### 📌 Status
 Project is: _in_progress_
 
