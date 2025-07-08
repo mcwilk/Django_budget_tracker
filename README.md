@@ -28,8 +28,6 @@ A Django-based web app for tracking and categorizing personal expenses and equip
 
 ### 📷 Screenshots
 
-![Screenshot1](other/screenshots/list.png)
-
 ![Screenshot2](other/screenshots/dashboard.png)
 
 ![Screenshot3](other/screenshots/analysis_v1.png)
