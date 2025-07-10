@@ -7,8 +7,8 @@
 * [Tech Stack](#-tech-stack)
 * [Testing & Quality](#-testing--quality)
 * [CI/CD](#-cicd)
-* [Status](#-status)
 * [Screenshots](#-screenshots)
+* [Status](#-status)
 * [Sources](#-sources)
 * [Contact](#-contact)
 
@@ -48,7 +48,13 @@ CI/CD pipelines implemented with GitHub Actions. Automated steps include:
 - Improvement of environment separation for development, testing/staging and production (planned)
 - Deployment to Kubernetes via ArgoCD using GitOps workflows (planned)
 
-### 📌 Status
+## 📷 Screenshots
+
+![Screenshot2](other/screenshots/dashboard.png)
+
+![Screenshot3](other/screenshots/analysis_v1.png)
+
+## 📌 Status
 Project is: _in_progress_
 
 Currently being extended with GitOps-based deployment using Kubernetes and ArgoCD.
@@ -58,12 +64,6 @@ Planned enhancements:
 - NGINX for routing
 - Monitoring and alerting with Prometheus and Grafana
 - Deployment to self-hosted VPS server environment
-
-## 📷 Screenshots
-
-![Screenshot2](other/screenshots/dashboard.png)
-
-![Screenshot3](other/screenshots/analysis_v1.png)
 
 ## 📂 Sources
 Charts provided by: www.highcharts.com
