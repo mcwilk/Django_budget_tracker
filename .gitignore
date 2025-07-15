@@ -1,5 +1,5 @@
 .env*
-!.env_repo
+!.env_example
 
 __pycache__
 .idea
