@@ -1,0 +1,525 @@
+body
+{
+    font-family: 'Lato', sans-serif;
+    background-color: rgb(233, 233, 233);
+}
+
+#container
+{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    min-height: 650px;
+}
+
+#welcome
+{
+    text-align: center;
+    font-size: 60px;
+    padding: 80px 0px 30px 0px;
+}
+
+.instr
+{
+    text-align: center;
+    font-size: 25px;
+    padding: 50px 0px 30px 0px;
+}
+
+.instr a
+{
+    display: inline-block;
+    margin: 35px 10px 0px 10px;
+}
+
+.instr a > button
+{
+    font-size: 20px;
+    width: 100px;
+}
+
+.login
+{
+    font-size: 15px;
+    margin-top: 150px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.login-l
+{
+    float: left;
+    text-align: initial;
+    width: 150px;
+    padding: 15px 0px 0px 30px;
+}
+
+.login-l label
+{
+    margin-bottom: 17px;
+}
+
+.login-r
+{
+    float: left;
+    text-align: initial;
+    width: 250px;
+    margin-bottom: 5px;
+    padding: 11px 0px 0px 0px;
+}
+
+.login-r input, .login-r textarea
+{
+    margin-bottom: 8px;
+    width: 200px;
+    height: 30px;
+}
+
+.login button
+{
+    text-align: center;
+    width: 80px;
+    margin-top: 20px;
+}
+
+#reg-head
+{
+    font-size: 25px;
+    font-weight: bold;
+    width: 600px;
+    padding-top: 30px;
+    margin: 0px 200px 30px 200px
+}
+
+.reg-form
+{
+    font-size: 15px;
+    width: 600px;
+    margin: 0px 200px 0px 200px;
+}
+
+.reg-form textarea, .reg-form input 
+{
+    width: 100%;
+}
+
+.reg-form button
+{
+    margin: 15px 15px 0px 0px; 
+}
+
+#top
+{
+    background-color: rgb(221, 13, 13);
+    color: white;
+    height: 65px;
+}
+
+#top a
+{
+    text-decoration: none;
+    color: white;
+}
+
+.top-left
+{
+    float: left;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+    margin: 7px 0px 10px 15px;
+    padding-right: 35px;
+    border-right: 1px solid rgb(255, 255, 255);
+}
+
+.top-user
+{
+    float: left;
+    font-size: 22px;
+    margin: 17px 0px 0px 30px;
+}
+
+.top-right
+{
+    float: right;
+    font-size: 15px;
+    margin: 23px 20px 0px 0px;
+}
+
+#new-bdt
+{
+    clear: both;
+}
+
+#new-bdt button
+{
+    font-size: 16px;
+    width: 90px;
+    margin: 50px 0px 20px 30px;
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+}
+
+.budget-list-item
+{
+    background-color: white;
+    height: 50px;
+    margin: 0px 15px 15px 15px;
+    font-size: 20px;
+    padding: 10px 25px 0px 15px;
+    color: black;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 7px;
+    opacity: 0.75;
+}
+
+.budget-list-item:hover
+{
+    opacity: 1;
+}
+
+.budget-list-item span
+{
+    float: right;
+    font-weight: bold;
+}
+
+.budget-list-empty
+{
+    margin: 10px 15px 15px 30px;
+    font-size: 20px;
+    color: black;
+}
+
+
+#bdt-create-head
+{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 100px 0px 0px 0px;
+    text-align: center;
+}
+
+.forms
+{
+    font-size: 15px;
+    padding-top: 30px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.forms-l
+{
+    float: left;
+    text-align: initial;
+    width: 150px;
+    padding: 15px 0px 0px 20px;
+}
+
+.forms-l label
+{
+    margin-bottom: 17px;
+}
+
+.forms-r
+{
+    float: left;
+    text-align: initial;
+    width: 250px;
+    margin-bottom: 5px;
+    padding: 10px 0px 0px 0px;
+}
+
+.forms-r input, .forms-r textarea
+{
+    margin-bottom: 8px;
+    width: 200px;
+    height: 30px;
+}
+
+.forms-r select
+{
+    margin-bottom: 8px;
+    width: 200px;
+    height: 30px;
+}
+
+.forms button
+{
+    width: 80px;
+    margin-top: 20px;
+}
+
+#container-2
+{
+    background-color: white;
+    min-height: 500px;
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#overlap
+{
+    background-color: rgb(226, 0, 0);
+    height: 50px;
+    margin: 50px 0px 0px 0px;
+    font-size: 20px;
+    color: rgb(255, 0, 0);
+}
+
+#overlap-l-a
+{
+    float: left;
+    padding: 9px 16px 13px 16px;
+    background-color: rgb(255, 255, 255);
+}
+
+#overlap-l-na
+{
+    float: left;
+    padding: 9px 16px 12px 16px;
+    color: white;
+}
+
+#overlap-r-a
+{
+    float: left;
+    padding: 9px 16px 13px 16px;
+    background-color: rgb(255, 255, 255);
+}
+
+#overlap-r-na
+{
+    float: left;
+    padding: 9px 16px 12px 16px;
+    color: white;
+}
+
+#dashboard
+{
+    background-color: rgb(255, 255, 255);
+    margin: 1px 15px 30px 15px;
+    padding-bottom: 40px;
+    font-size: 15px;
+    color: black;
+}
+
+#dashboard-btn-l
+{
+    float: left;
+    margin: 15px 0px 30px 45px;
+}
+
+#dashboard-btn-r
+{
+    float: right;
+    margin: 15px 45px 30px 0px;
+}
+
+#h-info-l
+{
+    float:left;
+    padding: 20px 0px 0px 25px;
+    font-size: 12px;
+    background-color: rgb(255, 255, 255);
+}
+
+#h-info-r
+{
+    float: right;
+    padding: 20px 25px 0px 0px;
+    font-size: 12px;
+    background-color: rgb(255, 255, 255);
+}
+
+#h-title
+{
+    float: left;
+    padding: 0px 0px 5px 25px;
+    font-size: 32px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+#h-balance
+{
+    float: right;
+    padding: 0px 25px 5px 0px;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#title-bar
+{
+    font-size: 10px;
+    border-bottom: 1px solid;
+    margin: 0px 25px 10px 25px;
+    color: rgb(153, 153, 153);
+}
+
+.col1
+{
+    float: left;
+    padding-left: 15px;
+    padding-bottom: 2px;
+    width: 130px;
+}
+
+.col2
+{
+    float: left;
+    padding-bottom: 2px;
+    width: 340px;
+}
+
+.col3
+{
+    float: left;
+    padding-bottom: 2px;
+    width: 135px;
+}
+
+.col4
+{
+    float: left;
+    padding-bottom: 2px;
+    width: 120px;
+}
+
+.col5
+{
+    float: left;
+    padding-bottom: 2px;
+    width: 100px;
+}
+
+.col6
+{
+    float: left;
+    padding-bottom: 2px;
+    width: 50px;
+    color: rgb(255, 0, 0);
+}
+
+.col1-item
+{
+    float: left;
+    padding-left: 40px;
+    padding-bottom: 5px;
+    width: 155px;
+}
+
+.col2-item
+{
+    float: left;
+    padding-bottom: 5px;
+    width: 340px;
+}
+
+.col3-item
+{
+    float: left;
+    padding-bottom: 5px;
+    width: 135px;
+}
+
+.col4-item
+{
+    float: left;
+    padding-bottom: 5px;
+    width: 120px;
+}
+
+.col5-item
+{
+    float: left;
+    padding-bottom: 5px;
+    width: 113px;
+}
+
+.col6-item
+{
+    float: left;
+    padding-bottom: 5px;
+    width: 20px;
+}
+
+.col6-item a
+{
+    color: rgb(255, 0, 0);
+    text-decoration: none;
+}
+
+#sum-bar
+{
+    font-size: 15px;
+    border-top: 1px solid;
+    margin: 5px 25px 10px 25px;
+    color: rgb(153, 153, 153);
+}
+
+.col1-sum
+{
+    float:left;
+    text-align: right;
+    width: 650px;
+    padding-top: 5px;
+    color: black;
+}
+
+.col2-sum
+{
+    float:left;
+    margin-left: 75px;
+    padding-top: 5px;
+    color: black;
+    font-weight: bold;
+}
+
+#plot-1
+{
+    width: 90%;
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+}
+
+#plot-2
+{
+    float: left;
+    width: 45%;
+    height: 350px;
+    margin-left: 35px;
+
+
+}
+
+#plot-3
+{
+    float: right;
+    width: 45%;
+    height: 350px;
+    margin-right: 35px;
+}
+
+#spacer
+{
+    height: 40px;
+}
+
+#info
+{
+    clear: both;
+    text-align: center;
+    margin-top: 35px;
+}
