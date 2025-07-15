@@ -1,9 +1,10 @@
 .env*
+!.env_repo
 
 __pycache__
 .idea
 budget_app/migrations/*
 !budget_app/migrations/__init__.py
 !budget_app/migrations/*initial.py
+static/admin
 venv
-static
