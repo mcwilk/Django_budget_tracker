@@ -24,9 +24,34 @@ A Django-based web application for tracking and categorizing personal expenses, 
 - Django admin panel for managing users, categories, and transactions
 
 ## ⚡ Quick Start
-⚠️ Note: Before you begin, make sure you have Docker ≥ 27.5 installed on your machine.
+⚠️ Note: Before you begin, make sure you have Git and Docker (≥27.5) installed on your machine. WSL (Windows Subsystem for Linux) is optional.
 
-#### 🚧 SECTION UNDER DEVELOPMENT 🚧
+Follow the CMD steps to run the app locally with Docker:
+##### 1. Clone the repository
+```git clone <https_or_ssh_repo_address>```
+
+##### 2. Navigate to the project directory
+```cd Expense_tracker_with_CICD/```
+
+##### 3. Switch to WSL (optional)
+```wsl```
+
+##### 4. Start the app with docker-compose
+```docker compose -p <your_project_name> up -d```
+
+##### 5. Open the app in your browser
+http://localhost:8000/
+
+##### 6. Log in using a guest account
+- username: ```guest123```
+- password: ```guest123```
+
+##### 7. Clean-up (optional)
+```
+docker-compose -p project down -v   # To close the app/containers
+docker images                       # To get image ids
+docker rmi <image_ids>              # To remove images
+```
 
 ## 🧪 Tech Stack
 - Backend: Python (3.11), Django (4.2), PostgreSQL
