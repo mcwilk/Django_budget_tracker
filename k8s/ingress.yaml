@@ -5,6 +5,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+#  ingressClassName: nginx
   rules:
     - host: tracker-local
       http:
@@ -15,4 +16,4 @@ spec:
               service:
                 name: tracker-service
                 port:
-                  number: 8000
+                  number: 8000  # the port where Service listens to

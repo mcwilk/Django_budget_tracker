@@ -5,7 +5,8 @@ metadata:
 spec:
   selector:
     app: tracker
+  type: ClusterIP       # default type (not needed to declare), other: NodePort, LoadBalancer
   ports:
     - protocol: TCP
-      port: 8000
-      targetPort: 8000
+      port: 8000        # Service listens here
+      targetPort: 8000  # Traffic goes to pod here (the port where Django listens to)
