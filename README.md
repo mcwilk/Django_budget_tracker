@@ -33,20 +33,27 @@ Follow the CMD steps to run the app locally with Docker:
 ##### 2. Navigate to the project directory
 ```cd Expense_tracker_with_CICD/```
 
-##### 3. Switch to WSL (optional)
+##### 3. [Optional] Switch to WSL
 ```wsl```
 
-##### 4. Start the app with docker-compose
+##### 4. [Optional] Generate proper SECRET_KEY 
+In case you need to run the app with DEBUG=False mode please generate the key in python console with the following command (previous local Django installation needed!):
+```
+from django.core.management.utils import get_random_secret_key
+print(get_random_secret_key())
+```
+
+##### 5. Start the app with docker-compose
 ```docker compose -p <your_project_name> up -d```
 
-##### 5. Open the app in your browser
+##### 6. Open the app in your browser
 http://localhost:8000/
 
-##### 6. Log in using a guest account
+##### 7. Log in using a guest account
 - username: ```guest123```
 - password: ```guest123```
 
-##### 7. Clean-up (optional)
+##### 8. [Optional] Clean-up
 ```
 docker-compose -p project down -v   # To close the app/containers
 docker images                       # To get image ids
