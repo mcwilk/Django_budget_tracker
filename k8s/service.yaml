@@ -4,9 +4,9 @@ metadata:
   name: tracker-service
 spec:
   selector:
-    app: tracker
+    app: tracker        # should match metadata.labels.app in in deployment.yaml
   type: ClusterIP       # default type (not needed to declare), other: NodePort, LoadBalancer
   ports:
-    - protocol: TCP
+    - protocol: TCP     # HTTP works on TCP
       port: 8000        # Service listens here
-      targetPort: 8000  # Traffic goes to pod here (the port where Django listens to)
+      targetPort: 8000  # Traffic goes to pod/container here (the port where Django listens to)
