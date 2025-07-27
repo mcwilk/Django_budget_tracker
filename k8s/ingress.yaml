@@ -5,7 +5,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-#  ingressClassName: nginx
+  ingressClassName: nginx  # thanks to that it is visible to Ingress Controller
   rules:
     - host: tracker-local
       http:

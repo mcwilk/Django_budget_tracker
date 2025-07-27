@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: tracker        # should match metadata.labels.app in in deployment.yaml
-  type: ClusterIP       # default type (not needed to declare), other: NodePort, LoadBalancer
+  type: ClusterIP       # default type, should be used with Ingress Controller; other types: NodePort, LoadBalancer
   ports:
     - protocol: TCP     # HTTP works on TCP
       port: 8000        # Service listens here
