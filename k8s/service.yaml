@@ -8,5 +8,5 @@ spec:
   type: ClusterIP       # default type, should be used with Ingress Controller; other types: NodePort, LoadBalancer
   ports:
     - protocol: TCP     # HTTP works on TCP
-      port: 8000        # Service listens here
+      port: 80          # Service listens here
       targetPort: 8000  # Traffic goes to pod/container here (the port where Django listens to)

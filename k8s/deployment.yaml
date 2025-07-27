@@ -28,7 +28,7 @@ spec:
                   name: tracker-secret
                   key: SECRET_KEY
             - name: ALLOWED_HOSTS
-              value: "tracker.local,localhost,127.0.0.1"
+              value: "tracker-local,localhost,127.0.0.1"
             - name: POSTGRES_DB
               value: "budget_app_db"
             - name: POSTGRES_USER

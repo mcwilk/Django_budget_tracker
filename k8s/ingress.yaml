@@ -4,6 +4,7 @@ metadata:
   name: tracker-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
 spec:
   ingressClassName: nginx  # thanks to that it is visible to Ingress Controller
   rules:
@@ -16,4 +17,4 @@ spec:
               service:
                 name: tracker-service
                 port:
-                  number: 8000  # the port where Service listens to
+                  number: 80  # the port where Service listens to
